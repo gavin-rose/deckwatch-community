@@ -8,7 +8,7 @@ config :deckcom, DeckcomWeb.Endpoint,
 
 config :deckcom, Deckcom.Repo,
   ssl: true,
-  url: database_url,
+  url: String.to_integer(System.get_env("DATABASE_URL")),
   secret_key_base: String.to_integer(System.get_env("SECRET_KEY_BASE")),
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
 
