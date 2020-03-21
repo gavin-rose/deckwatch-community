@@ -8,7 +8,7 @@ defmodule DeckcomWeb.UserSocket do
   #################################################
   ## *Insert Auth0 Logic Once Implemented Fully* ##
   #################################################
-  def connect(_params, socket, _connect_info) do
+  def connect(_params, socket) do
     {:ok, socket}
   end
 
