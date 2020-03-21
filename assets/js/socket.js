@@ -1,0 +1,22 @@
+//////////////////////////////////////////////////////////////
+//IMPORTS
+import {Socket} from "phoenix"
+/////////////////////////////////////////////////////////////
+//INIT SOCKET CONNECTION
+let socket = new Socket("/socket", {params: {token: window.userToken}})
+//AUTH0 ASSIGN CURRENT_USER AND AUTHENTICATE CHANNEL JOIN
+//FILL ME IN ONCE AUTH0 AUTHENTIFICATION INTEGRATED///////////
+
+//////////////////////////////////////////////////////////////
+//CONNECT TO SOCKET
+socket.connect()
+//////////////////////////////////////////////////////////////
+//JOIN CHANNEL DEFAULT TOPIC (NOT IN USE)
+//*let channel = socket.channel("topic:default", {})
+//*channel.join()
+//*  .receive("ok", resp => { console.log("Joined successfully", resp) })
+//*  .receive("error", resp => { console.log("Unable to join", resp) })
+//////////////////////////////////////////////////////////////
+//EXPORT SOCKET.JS
+export default socket
+//////////////////////////////////////////////////////////////
