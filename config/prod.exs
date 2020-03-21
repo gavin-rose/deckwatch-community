@@ -4,13 +4,15 @@ config :deckcom, DeckcomWeb.Endpoint,
   http: [port: {:system, "PORT"}],
   url: [scheme: "https", host: "blooming-retreat-92794.herokuapp.com", port: 443],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE"),
+  check_origin: ["//dry-wave-92309.herokuapp.com", "//localhost:4000"]
 
 config :deckcom, Deckcom.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
   ssl: true,
-  url: String.to_integer(System.get_env("DATABASE_URL")),
-  secret_key_base: String.to_integer(System.get_env("SECRET_KEY_BASE")),
-  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
+  url: System.get_env("DATABASE_URL")
 
 # Do not print debug messages in production
 config :logger, level: :info
