@@ -3,7 +3,7 @@
 import {Socket} from "phoenix"
 /////////////////////////////////////////////////////////////
 //INIT SOCKET CONNECTION
-let socket = new Socket("/socket", {params: {token: window.userToken}})
+let socket = new Socket("/socket", {params: {token: "blankerman"}})
 //AUTH0 ASSIGN CURRENT_USER AND AUTHENTICATE CHANNEL JOIN
 //FILL ME IN ONCE AUTH0 AUTHENTIFICATION INTEGRATED///////////
 
