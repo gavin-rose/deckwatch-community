@@ -24,7 +24,8 @@ defmodule DeckcomWeb.AuthController do
       case UserFromAuth.find_or_create(auth) do
         {:ok, user} ->
           if Users.get_user_by_email(email: user.email) === nil do
-            Users.create_user(%{full_name: user.name, email: user.email})
+            userx = Users.create_user(%{name_full: user.name, email: user.email})
+            IO.puts inspect userx
           end
           link = "/"
           conn

@@ -18,9 +18,6 @@ defmodule DeckcomWeb.MainChannel do
   # It is also common to receive messages from the client and
   # broadcast to everyone in the current topic (main:lobby).
   def handle_in("shout", payload, socket) do
-    cur = Deckcom.Users.get_user_by_email(email: socket.assigns.current_user.email)
-    IO.puts inspect cur
-    IO.puts inspect payload
     broadcast socket, "shout", payload
     {:noreply, socket}
   end
