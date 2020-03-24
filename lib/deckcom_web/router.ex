@@ -13,14 +13,26 @@ defmodule DeckcomWeb.Router do
     plug :accepts, ["json"]
   end
 
+  #Auth Routing // Auth0
+  scope "/auth", DeckcomWeb do
+    pipe_through :browser
+    
+    get "/:provider", AuthController, :request
+    get "/:provider/callback", AuthController, :callback
+    post "/:provider/callback", AuthController, :callback
+  end
+
   scope "/", DeckcomWeb do
     pipe_through :browser
 
+    #Home
     get "/", PageController, :index
+
+    #Auth0 Logout Path
+    get "/logout", AuthController, :logout
+
+    #Get,Post,Update,Delete,Index for Content
+    resources "/users", UserController
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", DeckcomWeb do
-  #   pipe_through :api
-  # end
 end

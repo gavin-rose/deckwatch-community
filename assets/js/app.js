@@ -16,10 +16,12 @@ channel.on('shout', function (payload) {
 });
 //MAIN CHANNEL JOIN
 channel.join();
+
 ///////////////////////////////////////////////////////////
 //VARIABLES FROM INDEX.HTML
 let ul = document.getElementById('msg-list');
 let msg = document.getElementById('msg');
+let aic = document.getElementById('active_in_channel');
 //ON ENTER KEY PRESS LISTENER
 msg.addEventListener('keypress', function (event) {
   if (event.keyCode == 13 && msg.value.length > 0) {

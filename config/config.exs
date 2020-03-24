@@ -17,6 +17,19 @@ config :deckcom, DeckcomWeb.Endpoint,
   render_errors: [view: DeckcomWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Deckcom.PubSub, adapter: Phoenix.PubSub.PG2]
 
+config :ueberauth, Ueberauth,
+  providers: [
+    auth0: { Ueberauth.Strategy.Auth0, [] },
+  ]
+
+config :ueberauth, Ueberauth.Strategy.Auth0.OAuth,
+  domain: System.get_env("AUTH0_DOMAIN"),
+  #domain: "debugr.auth0.com",
+  client_id: System.get_env("AUTH0_CLIENT_ID"),
+  #client_id: "z0lsC3TDK6yW8GRxWzeqiafH69Ly0XoC",
+  client_secret: System.get_env("AUTH0_CLIENT_SECRET")
+  #client_secret: "KpQVaHjXlGYZkPn3shuyQMs1_9gp24NK1YEsJWRNBpRJCBacQZVlMuR4piAFe0Oc"
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

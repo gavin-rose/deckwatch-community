@@ -20,7 +20,7 @@ defmodule Deckcom.MixProject do
   def application do
     [
       mod: {Deckcom.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:ueberauth, :ueberauth_auth0, :logger, :runtime_tools]
     ]
   end
 

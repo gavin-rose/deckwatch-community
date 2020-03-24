@@ -1,4 +1,4 @@
-<h4><span style="float: left;">The Deckwatch Community</span><span style="float: right;">Work in Progress</span></h4>
+<!--<h4><span style="float: left;">The Deckwatch Community</span><span style="float: right;">Active In Channel: <span id="active_in_channel">0</span></span></h4>-->
 <!--Messages pulled from app.js and socket.js-->
 <ul id="msg-list" class="scrolling" style="width: 100%; height: 80vh; border-radius: 5px; border: 2px solid white; color: white; overflow: scroll; list-style-type: none;"></ul>
 <!--Input field for sending messages-->
