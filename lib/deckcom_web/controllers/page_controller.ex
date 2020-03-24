@@ -8,7 +8,8 @@ defmodule DeckcomWeb.PageController do
     #can people get in without logging in? ask team
      nil ->
          conn 
-         |> assign(:current_user, nil) #|> redirect(to: "/auth/auth0") |> halt
+         #|> assign(:current_user, nil) #
+         |> redirect(to: "/auth/auth0") |> halt
      _ ->
        conn
        |> assign(:current_user, user)
