@@ -1,5 +1,6 @@
 defmodule DeckcomWeb.Router do
   use DeckcomWeb, :router
+  require Ueberauth
 
   pipeline :browser do
     plug :accepts, ["html"]
