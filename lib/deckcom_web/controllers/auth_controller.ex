@@ -23,13 +23,9 @@ defmodule DeckcomWeb.AuthController do
     def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
       case UserFromAuth.find_or_create(auth) do
         {:ok, user} ->
-          n = Enum.random(1111111..9999999)
           if Users.get_user_by_email(email: user.email) === nil do
             Users.create_user(%{full_name: user.name, email: user.email})
           end
-          sidUser = Users.get_user_by_email(email: user.email)
-          sid = sidUser.id
-          IO.puts n 
           link = "/"
           conn
           #|> put_flash(:info, "Successfully authenticated as " <> user.email <> ".")
