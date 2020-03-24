@@ -17,7 +17,7 @@ defmodule Deckcom.Related.Mtg do
   def changeset(mtg, attrs) do
     mtg
     |> cast(attrs, [:scryfall_id, :object, :component, :name, :type_line, :uri])
-    #Take what you can get approach
+    #Take what you can get approach, so if an error pops up while running database merges, we can easily avoid errors within our database
     #|> validate_required([:scryfall_id, :object, :component, :name, :type_line, :uri])
   end
 end

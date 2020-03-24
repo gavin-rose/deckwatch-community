@@ -28,8 +28,10 @@ defmodule Deckcom.Face.Mtg do
   @doc false
   def changeset(mtg, attrs) do
     mtg
-    |> cast(attrs, [:artist, :flavor_text, :illustration_id, :loyalty, :mana_cost, :name, :object, :oracle_text, :power, :printed_name, :printed_text, :printed_type_line, :toughness, :type_line, :watermark, :color_indicator, :colors, :image_uris])
-    #Again, the take what you can give approach :)
-    #|> validate_required([:artist, :flavor_text, :illustration_id, :loyalty, :mana_cost, :name, :object, :oracle_text, :power, :printed_name, :printed_text, :printed_type_line, :toughness, :type_line, :watermark])
+    |> cast(attrs, [:artist, :flavor_text, :illustration_id, :loyalty, :mana_cost, :name, :object, :oracle_text, :power, :printed_name,
+     :printed_text, :printed_type_line, :toughness, :type_line, :watermark, :color_indicator, :colors, :image_uris])
+    #Take what you can get approach, so if an error pops up while running database merges, we can easily avoid errors within our database
+    #|> validate_required([:artist, :flavor_text, :illustration_id, :loyalty, :mana_cost, :name, :object, :oracle_text, :power, :printed_name,
+    # :printed_text, :printed_type_line, :toughness, :type_line, :watermark])
   end
 end

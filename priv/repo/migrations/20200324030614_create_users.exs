@@ -9,7 +9,6 @@ defmodule Deckcom.Repo.Migrations.CreateUsers do
       add :bio, :string, default: ""
       add :notification_method, :string, default: "WEB"
       add :notification_key, :string, default: ""
-      add :bio, :string, default: ""
       add :public_id, :string, default: ""
       add :friends, {:array, :integer}, default: []
       add :sent_requests, {:array, :integer}, default: []
