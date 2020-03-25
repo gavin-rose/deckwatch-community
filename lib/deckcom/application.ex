@@ -13,7 +13,7 @@ defmodule Deckcom.Application do
       # Start the endpoint when the application starts
       DeckcomWeb.Endpoint,
 
-      Task.Geniset.start_link
+      Deckcom.Task.Geniset.start_link(_)
       # Starts a worker by calling: Deckcom.Worker.start_link(arg)
       # {Deckcom.Worker, arg},
     ]
