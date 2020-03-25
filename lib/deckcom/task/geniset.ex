@@ -1,4 +1,4 @@
-defmodule Task.Geniset do
+defmodule Deckcom.Task.Geniset do
     use GenServer
 
     def start_link do
