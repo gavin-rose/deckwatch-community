@@ -18,6 +18,8 @@ defmodule DeckcomWeb.MainChannel do
   # It is also common to receive messages from the client and
   # broadcast to everyone in the current topic (main:lobby).
   def handle_in("shout", payload, socket) do
+    IO.puts inspect payload
+    Deckcom.Message.changeset(%Deckcom.Message{}, payload) |> Deckcom.Repo.insert 
     broadcast socket, "shout", payload
     {:noreply, socket}
   end
