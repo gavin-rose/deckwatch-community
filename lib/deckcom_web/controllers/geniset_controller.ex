@@ -58,7 +58,7 @@ defmodule DeckcomWeb.GenisetController do
                 |> put_flash(:info, "Geniset created successfully.")
                 |> redirect(to: Routes.geniset_path(conn, :show, geniset))
               {:error} ->
-                %Ecto.Changeset{} = changeset
+                changeset = Genisets.change_geniset(%Geniset{})
                 render(conn, "new.html", changeset: changeset)
             end
           {:error, %Ecto.Changeset{} = changeset} ->
