@@ -13,8 +13,8 @@ channel.on('shout', function (payload) {
   //let name = username();
   let name = payload.name;
   //UID HIDDEN VALUE
-  let uid = payload.uid;
-  li.innerHTML = '<b>' + name + "-" + uid + '</b>: ' + payload.message;
+  //let uid = payload.uid;
+  li.innerHTML = '<b>' + name + '</b>: ' + payload.message;
   ul.appendChild(li);
   ul.scrollTop = ul.scrollHeight - ul.clientHeight; 
 });
@@ -26,15 +26,16 @@ let ul = document.getElementById('msg-list');
 let msg = document.getElementById('msg');
 //let aic = document.getElementById('active_in_channel');
 //NAME HIDDEN VALUE
-let name = document.getElementById('name');
+//let name = document.getElementById('name');
 //UID HIDDEN VALUE
-let uid = document.getElementById('uid');
+//let uid = document.getElementById('uid');
 //ON ENTER KEY PRESS LISTENER
 msg.addEventListener('keypress', function (event) {
   if (event.keyCode == 13 && msg.value.length > 0) {
     channel.push('shout', {
-      name: name.value,
-      message: msg.value
+      name: username(),
+      message: msg.value,
+      uid: uid()
     });
     msg.value = '';
   }

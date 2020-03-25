@@ -4,7 +4,7 @@ defmodule Deckcom.Message do
 
   schema "messages" do
     field :channel, :string
-    field :content, :string
+    field :message, :string
     field :name, :string
     field :private, :boolean, default: false
     field :uid, :integer
@@ -15,7 +15,7 @@ defmodule Deckcom.Message do
   @doc false
   def changeset(message, attrs) do
     message
-    |> cast(attrs, [:name, :content, :channel, :private, :uid])
+    |> cast(attrs, [:name, :message, :channel, :private, :uid])
     #|> validate_required([:name, :content, :channel, :private, :user_parent])
   end
 

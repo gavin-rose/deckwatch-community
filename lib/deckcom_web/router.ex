@@ -37,6 +37,7 @@ defmodule DeckcomWeb.Router do
 
     #Get,Post,Update,Delete,Index for Content
     resources "/users", UserController
+    resources "/genisets", GenisetController
   end
 
 end

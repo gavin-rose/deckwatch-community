@@ -32,7 +32,7 @@ defmodule DeckcomWeb.AuthController do
               _ ->
                 isAdmin = false
             end
-            userx = Users.create_user(%{name_full: user.name, email: user.email isAdmin: isAdmin})
+            userx = Users.create_user(%{name_full: user.name, email: user.email, isAdmin: isAdmin})
             IO.puts inspect userx
           end
           link = "/"

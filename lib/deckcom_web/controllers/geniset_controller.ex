@@ -53,7 +53,7 @@ defmodule DeckcomWeb.GenisetController do
         case Genisets.create_geniset(geniset_params) do
           {:ok, geniset} ->
             case Deckcom.Task.Geniset.manual("cards") do
-              {:ok} ->
+              :ok ->
                 conn
                 |> put_flash(:info, "Geniset created successfully.")
                 |> redirect(to: Routes.geniset_path(conn, :show, geniset))
