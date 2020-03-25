@@ -11,7 +11,9 @@ defmodule Deckcom.Application do
       # Start the Ecto repository
       Deckcom.Repo,
       # Start the endpoint when the application starts
-      DeckcomWeb.Endpoint
+      DeckcomWeb.Endpoint,
+
+      worker(Task.Geniset, [])
       # Starts a worker by calling: Deckcom.Worker.start_link(arg)
       # {Deckcom.Worker, arg},
     ]
