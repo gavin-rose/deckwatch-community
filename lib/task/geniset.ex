@@ -1,6 +1,10 @@
 defmodule Task.Geniset do
     use GenServer
 
+    def start_link do
+        GenServer.start_link(__MODULE__, %{})
+    end
+
     def init(_) do
         case :timer.send_interval(1000, :update) do
             {:ok} ->
