@@ -7,7 +7,7 @@ defmodule Deckcom.Message do
     field :content, :string
     field :name, :string
     field :private, :boolean, default: false
-    field :user_parent, :integer
+    field :uid, :integer
 
     timestamps()
   end
@@ -15,7 +15,11 @@ defmodule Deckcom.Message do
   @doc false
   def changeset(message, attrs) do
     message
-    |> cast(attrs, [:name, :content, :channel, :private, :user_parent])
-    |> validate_required([:name, :content, :channel, :private, :user_parent])
+    |> cast(attrs, [:name, :content, :channel, :private, :uid])
+    #|> validate_required([:name, :content, :channel, :private, :user_parent])
+  end
+
+  def get_messages(limit \\ 100) do
+    Deckcom.Repo.all(Deckcom.Message, limit: limit)
   end
 end

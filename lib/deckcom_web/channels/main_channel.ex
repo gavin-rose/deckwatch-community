@@ -1,8 +1,18 @@
 defmodule DeckcomWeb.MainChannel do
   use DeckcomWeb, :channel
 
+  def handle_info(:after_join, socket) do
+    Deckcom.Message.get_messages()
+    |> Enum.each(fn msg -> push(socket, "shout", %{
+        name: msg.name,
+        message: msg.message,
+      }) end)
+    {:noreply, socket} # :noreply
+  end
+
   def join("main:lobby", payload, socket) do
     if authorized?(payload) do
+      send(self(), :after_join)
       {:ok, socket}
     else
       {:error, %{reason: "unauthorized"}}

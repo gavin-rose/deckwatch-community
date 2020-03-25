@@ -11,10 +11,10 @@ channel.on('shout', function (payload) {
   let li = document.createElement("li");
   //let name = new Date().getTime();
   //let name = username();
-  let name = document.getElementById('name').value;
+  let name = payload.name;
   //UID HIDDEN VALUE
-  let uid = document.getElementById('uid').value;
-  li.innerHTML = '<b>' + name + '</b>: ' + payload.message;
+  let uid = payload.uid;
+  li.innerHTML = '<b>' + name + "-" + uid + '</b>: ' + payload.message;
   ul.appendChild(li);
   ul.scrollTop = ul.scrollHeight - ul.clientHeight; 
 });
@@ -26,9 +26,9 @@ let ul = document.getElementById('msg-list');
 let msg = document.getElementById('msg');
 //let aic = document.getElementById('active_in_channel');
 //NAME HIDDEN VALUE
-let name = document.getElementById('name').value;
+let name = document.getElementById('name');
 //UID HIDDEN VALUE
-let uid = document.getElementById('uid').value;
+let uid = document.getElementById('uid');
 //ON ENTER KEY PRESS LISTENER
 msg.addEventListener('keypress', function (event) {
   if (event.keyCode == 13 && msg.value.length > 0) {
