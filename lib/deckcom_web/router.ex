@@ -29,6 +29,9 @@ defmodule DeckcomWeb.Router do
     #Home
     get "/", PageController, :index
 
+    #Admin Panel
+    get "/admin", PageController, :admin
+
     #Auth0 Logout Path
     get "/logout", AuthController, :logout
 

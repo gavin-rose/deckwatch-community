@@ -17,6 +17,7 @@ defmodule Deckcom.Repo.Migrations.CreateUsers do
       add :groups, {:array, :integer}, default: []
       add :decks, {:array, :integer}, default: []
       add :unseen_notifications, {:array, :integer}, default: []
+      add :isAdmin, :boolean, default: false, null: false
 
       timestamps()
     end

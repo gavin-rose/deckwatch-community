@@ -1,0 +1,32 @@
+<h1>Listing Genisets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ran by</th>
+      <th>Repeating</th>
+      <th>Repeating schedule</th>
+      <th>Geniset method</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for geniset <- @genisets do %>
+    <tr>
+      <td><%= geniset.ran_by %></td>
+      <td><%= geniset.repeating %></td>
+      <td><%= geniset.repeating_schedule %></td>
+      <td><%= geniset.geniset_method %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.geniset_path(@conn, :show, geniset) %></span>
+        <span><%= link "Edit", to: Routes.geniset_path(@conn, :edit, geniset) %></span>
+        <span><%= link "Delete", to: Routes.geniset_path(@conn, :delete, geniset), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Geniset", to: Routes.geniset_path(@conn, :new) %></span>

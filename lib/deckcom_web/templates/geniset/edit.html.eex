@@ -1,0 +1,5 @@
+<h1>Edit Geniset</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.geniset_path(@conn, :update, @geniset)) %>
+
+<span><%= link "Back", to: Routes.geniset_path(@conn, :index) %></span>

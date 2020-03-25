@@ -1,0 +1,28 @@
+<h1>Show Geniset</h1>
+
+<ul>
+
+  <li>
+    <strong>Ran by:</strong>
+    <%= @geniset.ran_by %>
+  </li>
+
+  <li>
+    <strong>Repeating:</strong>
+    <%= @geniset.repeating %>
+  </li>
+
+  <li>
+    <strong>Repeating schedule:</strong>
+    <%= @geniset.repeating_schedule %>
+  </li>
+
+  <li>
+    <strong>Geniset method:</strong>
+    <%= @geniset.geniset_method %>
+  </li>
+
+</ul>
+SUCCESS
+<span><%= link "Edit", to: Routes.geniset_path(@conn, :edit, @geniset) %></span>
+<span><%= link "Back", to: Routes.geniset_path(@conn, :index) %></span>

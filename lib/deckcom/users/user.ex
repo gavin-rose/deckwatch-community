@@ -17,6 +17,7 @@ defmodule Deckcom.Users.User do
     field :groups, {:array, :integer}, default: []
     field :decks, {:array, :integer}, default: []
     field :unseen_notifications, {:array, :integer}, default: []
+    field :isAdmin, :boolean, default: false, null: false
 
     timestamps()
   end
@@ -24,7 +25,7 @@ defmodule Deckcom.Users.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:name_full, :birthday, :email, :bio, :notification_method, :notification_key, :bio, :public_id, :friends, :sent_requests, :received_requests, :past_games, :groups, :decks, :unseen_notifications])
+    |> cast(attrs, [:name_full, :birthday, :email, :bio, :notification_method, :notification_key, :bio, :public_id, :friends, :sent_requests, :received_requests, :past_games, :groups, :decks, :unseen_notifications, :isAdmin])
     |> validate_required([:name_full, :email])
   end
 end

@@ -9,10 +9,15 @@
   </head>
   <body>
     <header>
-      
+      <%= if @current_user != nil do %>
+        <% user = Deckcom.Users.get_user_by_email(email: @current_user.email) %>
+        <% isAdmin = user.isAdmin %>
+        <%= if isAdmin === true do %>
+          <a href="/admin">Admin Panel</a>
+        <% end %>
+      <% end %>
     </header>
     <main role="main" class="container">
-      <% IO.puts Deckcom.Task.Geniset.manual("mask") %>
       <p class="alert alert-info" style="display: none;" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" style="display: none;" role="alert"><%= get_flash(@conn, :error) %></p>
       <%= render @view_module, @view_template, assigns %>
