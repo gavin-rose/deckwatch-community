@@ -1,6 +1,6 @@
 defmodule Deckcom.Task.Cards do
     def start_card_db_copy() do
-      page = 104
+      page = 1
       n = HTTPoison.request(
         "GET",
         "https://api.scryfall.com/cards?page=#{page}",
