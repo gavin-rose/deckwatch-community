@@ -11030,3 +11030,6 @@
    border-bottom: none;
  }
  
+.scrolling {
+  word-wrap: break-word;
+}

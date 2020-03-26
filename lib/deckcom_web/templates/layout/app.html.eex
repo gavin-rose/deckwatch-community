@@ -12,12 +12,42 @@
       <%= if @current_user != nil do %>
         <% user = Deckcom.Users.get_user_by_email(email: @current_user.email) %>
         <% isAdmin = user.isAdmin %>
-        <%= if isAdmin === true do %>
-          <a href="/admin">Admin Panel</a>
-        <% end %>
       <% end %>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">The Deckwatch</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+        
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Lobby <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Decks</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Games</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Settings</a>
+            </li>
+            <%= if isAdmin === true do %>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Admin</a>
+              </li>
+            <% end %>
+          </ul>
+          <div class="form-inline my-2 my-lg-0">
+            <div class="nav-link" style="color: white;"><%= user.name_full %></div>
+            <button class="btn btn-secondary my-2 my-sm-0" type="button">Logout</button>
+          </div>
+        </div>
+      </nav>
     </header>
-    <main role="main" class="container">
+    <main role="main" class="">
       <p class="alert alert-info" style="display: none;" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" style="display: none;" role="alert"><%= get_flash(@conn, :error) %></p>
       <%= render @view_module, @view_template, assigns %>

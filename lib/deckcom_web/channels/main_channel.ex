@@ -7,7 +7,7 @@ defmodule DeckcomWeb.MainChannel do
         name: msg.name,
         message: msg.message,
       }) end)
-    {:noreply, socket} # :noreply
+    {:noreply, socket}
   end
 
   def join("main:lobby", payload, socket) do

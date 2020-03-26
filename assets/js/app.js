@@ -8,14 +8,14 @@ import socket from "./socket"
 let channel = socket.channel('main:lobby', {})
 //MAIN CHANNEL LISTENER
 channel.on('shout', function (payload) { 
-  let li = document.createElement("li");
+  let div = document.createElement("div");
   //let name = new Date().getTime();
   //let name = username();
   let name = payload.name;
   //UID HIDDEN VALUE
   //let uid = payload.uid;
-  li.innerHTML = '<b>' + name + '</b>: ' + payload.message;
-  ul.appendChild(li);
+  div.innerHTML = name + ': ' + payload.message;
+  ul.appendChild(div);
   ul.scrollTop = ul.scrollHeight - ul.clientHeight; 
 });
 //MAIN CHANNEL JOIN
