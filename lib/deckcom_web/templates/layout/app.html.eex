@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Deckwatch - Community</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani&display=swap" rel="stylesheet">
   </head>
   <body>
     <header>
@@ -13,8 +14,8 @@
         <% user = Deckcom.Users.get_user_by_email(email: @current_user.email) %>
         <% isAdmin = user.isAdmin %>
       <% end %>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">The Deckwatch</a>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="height: 7vh; padding: none; margin: none; font-family: 'Rajdhani', sans-serif; letter-spacing: 2px;">
+        <a class="navbar-brand" href="/">The Deckwatch</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -23,7 +24,7 @@
         
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Lobby <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/">Lobby <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Decks</a>
@@ -36,18 +37,18 @@
             </li>
             <%= if isAdmin === true do %>
               <li class="nav-item">
-                <a class="nav-link" href="#">Admin</a>
+                <a class="nav-link" href="/admin">Admin</a>
               </li>
             <% end %>
           </ul>
           <div class="form-inline my-2 my-lg-0">
             <div class="nav-link" style="color: white;"><%= user.name_full %></div>
-            <button class="btn btn-secondary my-2 my-sm-0" type="button">Logout</button>
+            <button class="btn btn-secondary my-2 my-sm-0" type="button" onclick="window.location.replace('/logout');">Logout</button>
           </div>
         </div>
       </nav>
     </header>
-    <main role="main" class="">
+    <main role="main" class="" style="font-family: 'Rajdhani', sans-serif; letter-spacing: 1px;">
       <p class="alert alert-info" style="display: none;" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" style="display: none;" role="alert"><%= get_flash(@conn, :error) %></p>
       <%= render @view_module, @view_template, assigns %>
