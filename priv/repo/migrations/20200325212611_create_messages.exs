@@ -8,6 +8,7 @@ defmodule Deckcom.Repo.Migrations.CreateMessages do
       add :channel, :string
       add :private, :boolean, default: false, null: false
       add :uid, :integer
+      add :cont_card, :string
 
       timestamps()
     end

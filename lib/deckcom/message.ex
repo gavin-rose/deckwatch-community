@@ -8,6 +8,7 @@ defmodule Deckcom.Message do
     field :name, :string
     field :private, :boolean, default: false
     field :uid, :integer
+    field :cont_card, :string
 
     timestamps()
   end
@@ -15,7 +16,7 @@ defmodule Deckcom.Message do
   @doc false
   def changeset(message, attrs) do
     message
-    |> cast(attrs, [:name, :message, :channel, :private, :uid])
+    |> cast(attrs, [:name, :message, :channel, :private, :uid, :cont_card])
     #|> validate_required([:name, :content, :channel, :private, :user_parent])
   end
 

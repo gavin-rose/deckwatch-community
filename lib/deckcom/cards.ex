@@ -37,6 +37,10 @@ defmodule Deckcom.Cards do
   """
   def get_mtg!(id), do: Repo.get!(Mtg, id)
 
+  def get_cards(name), do: Repo.all(Mtg, name)
+
+  def get_card(scryfall_id), do: Repo.get_by(Mtg, scryfall_id)
+
   @doc """
   Creates a mtg.
 

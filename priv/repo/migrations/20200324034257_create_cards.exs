@@ -47,7 +47,7 @@ defmodule Deckcom.Repo.Migrations.CreateCards do
       add :printed_type_line, :string
       add :promo, :boolean, default: false, null: false
       add :rarity, :string
-      add :released_at, :date
+      add :released_at, :string
       add :reprint, :boolean, default: false, null: false
       add :scryfall_set_uri, :string
       add :set_name, :string
@@ -77,7 +77,7 @@ defmodule Deckcom.Repo.Migrations.CreateCards do
       add :promo_types, {:array, :string}
       add :purchase_uris, {:array, :string}
       add :related_uris, {:array, :string}
-      
+
       timestamps()
     end
 

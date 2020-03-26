@@ -6,7 +6,7 @@ defmodule Deckcom.Cards.Mtg do
     field :set_type, :string
     field :power, :string
     field :set_uri, :string
-    field :released_at, :date
+    field :released_at, :string
     field :scryfall2_uri, :string
     field :foil, :boolean, default: false
     field :prints_search_uri, :string

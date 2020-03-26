@@ -8,14 +8,20 @@ import socket from "./socket"
 let channel = socket.channel('main:lobby', {})
 //MAIN CHANNEL LISTENER
 channel.on('shout', function (payload) { 
+  let uri = payload.cont_card;
+  let img = document.createElement("img");
   let div = document.createElement("div");
-  //let name = new Date().getTime();
-  //let name = username();
   let name = payload.name;
-  //UID HIDDEN VALUE
-  //let uid = payload.uid;
   div.innerHTML = name + ': ' + payload.message;
+  img.src = uri;
+  img.style.width = "21vw";
+  img.style.height = "29vw";
+  img.style.borderRadius = "5px";
+  img.style.border = "2px solid white";
   ul.appendChild(div);
+  if(uri != undefined){
+    ul.appendChild(img);
+  }
   ul.scrollTop = ul.scrollHeight - ul.clientHeight; 
 });
 //MAIN CHANNEL JOIN
@@ -32,11 +38,17 @@ let msg = document.getElementById('msg');
 //ON ENTER KEY PRESS LISTENER
 msg.addEventListener('keypress', function (event) {
   if (event.keyCode == 13 && msg.value.length > 0) {
+    var matches = msg.value.match(/\[\[(.*?)\]\]/);
+    console.log(matches);
+    var card = "nil";
+    if(matches != null){
+      card = matches[1];
+    }
     channel.push('shout', {
       name: username(),
       message: msg.value,
       uid: uid(),
-      cont_card: false
+      cont_card: card
     });
     msg.value = '';
   }
