@@ -36,7 +36,7 @@ msg.addEventListener('keypress', function (event) {
       name: username(),
       message: msg.value,
       uid: uid(),
-      cont_card: 
+      cont_card: false
     });
     msg.value = '';
   }
