@@ -5,7 +5,7 @@
     </div>
   <% end %>
 
-  <%= label f, :ran_by %>
+  <%= label f, "Continue Card Migrations from page..." %>
   <%= number_input f, :ran_by %>
   <%= error_tag f, :ran_by %>
 

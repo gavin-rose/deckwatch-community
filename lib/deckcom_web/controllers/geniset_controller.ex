@@ -52,7 +52,7 @@ defmodule DeckcomWeb.GenisetController do
       true ->
         case Genisets.create_geniset(geniset_params) do
           {:ok, geniset} ->
-            case Deckcom.Task.Geniset.manual("cards") do
+            case Deckcom.Task.Geniset.cardsRetry(geniset.ran_by) do
               :ok ->
                 conn
                 |> put_flash(:info, "Geniset created successfully.")
