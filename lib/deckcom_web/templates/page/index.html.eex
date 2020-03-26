@@ -9,11 +9,11 @@
     IO.puts uid
 %>
 <!--Messages pulled from app.js and socket.js-->
-<div id="msg-list" class="scrolling" style="width: 80vw; height: 85vh; border: 2px solid black; color: white; overflow: scroll; list-style-type: none; padding:none; margin: none; padding: 1%;"></div>
+<div id="msg-list" class="scrolling" style="width: 80vw; height: 84vh; border: 2px solid black; color: white; overflow: scroll; list-style-type: none; padding:none; margin: none; padding: 1%;"></div>
 <!--Input field for sending messages-->
-<input type="text" id="msg" maxlength="250" class="form-control" style="width: 80vw; height: 8vh; border-radius: 0px;" placeholder="Type your message here..." autofocus>
-<div style="position: absolute; right: 0; top: 7vh; padding: none; background: #299fd6; width: 20vw; height: 93vh; border-left: 2px solid transparent; border-top: 2px solid transparent;">
-    <div style="margin: auto; text-align: center; color: white; font-size: 4vh;">
+<input type="text" id="msg" maxlength="250" class="form-control" style="width: 80vw; height: 9vh; border-radius: 0px;" placeholder="Type your message here..." autofocus>
+<div style="position: absolute; right: 0; top: 7vh; padding: none; background: #299fd6; width: 20vw; height: 95vh; border-left: 2px solid transparent; border-top: 2px solid transparent; overflow: hidden;">
+    <div style="margin: auto; text-align: center; color: white; font-size: 135%;">
         Chat Lobbies
     </div>
     <div style="padding-top: 4vh; margin: auto; text-align: center; color: white;">
