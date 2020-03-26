@@ -35,7 +35,8 @@ msg.addEventListener('keypress', function (event) {
     channel.push('shout', {
       name: username(),
       message: msg.value,
-      uid: uid()
+      uid: uid(),
+      cont_card: 
     });
     msg.value = '';
   }

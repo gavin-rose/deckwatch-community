@@ -77,7 +77,7 @@ defmodule Deckcom.Repo.Migrations.CreateCards do
       add :promo_types, {:array, :string}
       add :purchase_uris, {:array, :string}
       add :related_uris, {:array, :string}
-
+      
       timestamps()
     end
 

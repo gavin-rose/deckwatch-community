@@ -10,14 +10,19 @@ defmodule Deckcom.Task.Geniset do
     def init(task) do
         IO.puts yellow <> "Geniset Starting..." <> white
         IO.puts yellow <> "Running" <> blue <> "#{task}" <> yellow <> " on bootup..." <> white
-        :timer.send_after(1000, mask)
+        #:timer.send_after(1000, cards)
         IO.puts yellow <> "Task " <> blue <> "#{task}" <> yellow <> " Ran Successfully." <> white
         IO.puts yellow <> "Geniset Online, Initialization Complete." <> white
-        :timer.send_interval(1000 * 60 * 60 * 24 * 7, mask)
-        {:ok, task}
+        :timer.send_interval(1000 * 60 * 60 * 24 * 7, [cards, :infinity])
     end
 
-    def handle_info(mask, task) do
+    def handle_info(task, params) do
+        #case task do
+        #    {:ok, :ok} ->
+        #        {:noreply, IO.puts red <> "Default Task Running..."}
+        #    _ ->
+        #        {:noreply, IO.puts yellow <> "Handled Task " <> blue <> "#{task}" <> yellow <> " at #{Time.utc_now}, Next Task Running Automatically in " <> green <> "#{1000 * 60 * 60 * 24 * 7} seconds " <> white <> "(One Week)."}
+        #end
         {:noreply, IO.puts yellow <> "Handled Task " <> blue <> "#{task}" <> yellow <> " at #{Time.utc_now}, Next Task Running Automatically in " <> green <> "#{1000 * 60 * 60 * 24 * 7} seconds " <> white <> "(One Week)."}
     end
 
@@ -35,7 +40,12 @@ defmodule Deckcom.Task.Geniset do
             IO.puts yellow <> "Task " <> blue <> "#{task}" <> yellow <> " Ran Successfully." <> white
         end
     end
-    
+
+    def cards do
+        Deckcom.Task.Cards.start_card_db_copy()
+        {:ok, IO.puts yellow <> "Handled Task " <> blue <> "cards" <> yellow <> " at #{Time.utc_now}, Next Task Running Automatically in " <> green <> "#{1000 * 60 * 60 * 24 * 7} seconds " <> white <> "(One Week)."}
+    end
+
     def mask do
         Deckcom.Task.Test.log()
     end
