@@ -205,7 +205,7 @@ defmodule Deckcom.Task.Cards do
                       #REVISIT#related_uris: elem(Map.fetch(data, :related_uris), 1)
                     
                   }) do
-                      {:ok, mtg} ->
+                      {:ok, _} ->
                         "CARD COPIED"
                       {:error, _} ->
                         "CARD NOT COPIED"
@@ -509,7 +509,7 @@ defmodule Deckcom.Task.Cards do
                       #REVISIT#related_uris: elem(Map.fetch(data, :related_uris), 1)
                     
                   }) do
-                      {:ok, mtg} ->
+                      {:ok, _} ->
                         "CARD COPIED"
                       {:error, _} ->
                         "CARD NOT COPIED"
@@ -816,7 +816,7 @@ defmodule Deckcom.Task.Cards do
                       #REVISIT#related_uris: elem(Map.fetch(data, :related_uris), 1)
                     
                   }) do
-                      {:ok, mtg} ->
+                      {:ok, _} ->
                         "CARD COPIED"
                       {:error, _} ->
                         "CARD NOT COPIED"
