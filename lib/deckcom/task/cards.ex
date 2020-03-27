@@ -26,7 +26,9 @@ defmodule Deckcom.Task.Cards do
             if zn === [:error] do
               IO.puts inspect "Parse Error"
             else 
-              data = Enum.at(elem(Map.fetch(parsed, :data), 1), 0)
+              dat = elem(Map.fetch(parsed, :data), 1)
+              for data <- dat do
+              #data = Enum.at(elem(Map.fetch(parsed, :data), 1), 0)
               dataKeys = Map.keys(data)
               IO.puts inspect dataKeys
               name = elem(Map.fetch(data, :name), 1)
@@ -295,9 +297,10 @@ defmodule Deckcom.Task.Cards do
               next = elem(Map.fetch(parsed, :next_page), 1)
               IO.puts inspect next
               if more === true do
-                :timer.sleep(500)
+                :timer.sleep(1500)
                 next_page_copy(next)
               end
+            end
             end
             #IO.puts inspect zn
           end
@@ -330,7 +333,8 @@ defmodule Deckcom.Task.Cards do
             if zn === [:error] do
               IO.puts inspect "Parse Error"
             else 
-              data = Enum.at(elem(Map.fetch(parsed, :data), 1), 0)
+              dat = elem(Map.fetch(parsed, :data), 1)
+              for data <- dat do
               dataKeys = Map.keys(data)
               IO.puts inspect dataKeys
               name = elem(Map.fetch(data, :name), 1)
@@ -599,9 +603,10 @@ defmodule Deckcom.Task.Cards do
               next = elem(Map.fetch(parsed, :next_page), 1)
               IO.puts inspect next
               if more === true do
-                :timer.sleep(500)
+                :timer.sleep(1500)
                 next_page_copy(next)
               end
+            end
             end
             #IO.puts inspect zn
           end
@@ -612,7 +617,7 @@ defmodule Deckcom.Task.Cards do
       IO.puts inspect :link
       #page = num + 1
       page = 1
-      n = HTTPoison.request(
+      n = Task.async(HTTPoison.request(
         "GET",
         "#{link}",
         "",
@@ -629,6 +634,7 @@ defmodule Deckcom.Task.Cards do
         end
         |> (fn {ok, body} ->
           IO.puts inspect body
+          #dec = Task.async(Poison.decode(body, keys: :atoms))
           body
           |> Poison.decode(keys: :atoms)
           |> case do
@@ -637,7 +643,8 @@ defmodule Deckcom.Task.Cards do
             if zn === [:error] do
               IO.puts inspect "Parse Error"
             else 
-              data = Enum.at(elem(Map.fetch(parsed, :data), 1), 0)
+              dat = elem(Map.fetch(parsed, :data), 1)
+              for data <- dat do
               dataKeys = Map.keys(data)
               IO.puts inspect dataKeys
               name = elem(Map.fetch(data, :name), 1)
@@ -899,6 +906,7 @@ defmodule Deckcom.Task.Cards do
                       })
                     |> Deckcom.Repo.update()
               end
+              end
               #IO.puts inspect elem(Map.fetch(data, :image_uris), 1)
               
               more = elem(Map.fetch(parsed, :has_more), 1)
@@ -906,12 +914,13 @@ defmodule Deckcom.Task.Cards do
               next = elem(Map.fetch(parsed, :next_page), 1)
               IO.puts inspect next
               if more === true do
-                :timer.sleep(500)
+                :timer.sleep(1500)
                 next_page_copy(next)
               end
             end
             #IO.puts inspect zn
           end
-      end).() 
+      end).())
+      Task.await(n, :infinity) 
     end
 end

@@ -42,12 +42,14 @@ defmodule Deckcom.Task.Geniset do
     end
 
     def cardsRetry(page) do
-        Deckcom.Task.Cards.continue_card_db_copy(page)
+        task = Task.async(Deckcom.Task.Cards.continue_card_db_copy(page))
+        Task.await(task, :infinity)
         {:ok, IO.puts yellow <> "Handled Task " <> blue <> "cards" <> yellow <> " at #{Time.utc_now}, Next Task Running Automatically in " <> green <> "#{1000 * 60 * 60 * 24 * 7} seconds " <> white <> "(One Week)."}
     end
 
     def cards do
-        Deckcom.Task.Cards.start_card_db_copy()
+        task = Task.async(Deckcom.Task.Cards.start_card_db_copy())
+        Task.await(task, :infinity)
         {:ok, IO.puts yellow <> "Handled Task " <> blue <> "cards" <> yellow <> " at #{Time.utc_now}, Next Task Running Automatically in " <> green <> "#{1000 * 60 * 60 * 24 * 7} seconds " <> white <> "(One Week)."}
     end
 
