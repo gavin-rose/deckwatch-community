@@ -31,13 +31,14 @@ defmodule DeckcomWeb.Router do
 
     #Admin Panel
     get "/admin", PageController, :admin
+    resources "/genisets", GenisetController
 
     #Auth0 Logout Path
     get "/logout", AuthController, :logout
 
-    #Get,Post,Update,Delete,Index for Content
+    #Content
     resources "/users", UserController
-    resources "/genisets", GenisetController
+    resources "/decks", DeckController
   end
 
 end
