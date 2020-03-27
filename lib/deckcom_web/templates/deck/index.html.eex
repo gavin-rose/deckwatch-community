@@ -1,7 +1,12 @@
 <% user = Deckcom.Users.get_user_by_email(email: @current_user.email) %>
 <% decks = Deckcom.Decks.user_decks(owner: user.id) %>
 <%= if decks === [] do %>
-    <div style="color: white; padding: 1vw; width: 100%; text-align: center;">
+    <div style="color: white; padding: 1vw; width: 80vw; text-align: center;">
         You don't have any decks, add one now!
     </div>
 <% end %>
+<div style="position: absolute; right: 0; top: 7vh; padding: none; background: #299fd6; width: 20vw; height: 95vh; border-left: 2px solid transparent; border-top: 2px solid transparent; overflow: hidden;">
+    <div style="margin: auto; text-align: center; color: white; font-size: 135%;">
+        Decks
+    </div>
+</div>
