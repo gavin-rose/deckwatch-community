@@ -40,7 +40,7 @@ defmodule Deckcom.Cards do
   #def get_cards(name), do: Repo.all(Mtg, name)
 
   def get_cards(name) do
-    Mtg |> limit(1) |> Repo.all(name)
+    Mtg |> limit(1) |> where(^name) |> Repo.all(name)
   end
 
   def get_card(scryfall_id), do: Repo.get_by(Mtg, scryfall_id)

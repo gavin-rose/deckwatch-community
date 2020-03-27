@@ -8,26 +8,28 @@ import socket from "./socket"
 let channel = socket.channel('main:lobby', {})
 //MAIN CHANNEL LISTENER
 channel.on('shout', function (payload) { 
-  let uri = payload.cont_card;
-  let img = document.createElement("img");
   let div = document.createElement("div");
   let name = payload.name;
   div.innerHTML = name + ': ' + payload.message;
-  console.log("img link:" + uri);
-  img.src = uri;
-  //img.style.color = "red";
-  img.style.width = "21vw";
-  img.style.height = "29vw";
-  img.style.borderRadius = "5px";
-  img.style.border = "2px solid white";
   ul.appendChild(div);
+  let uri = payload.cont_card;
   if(uri != undefined){
-    ul.appendChild(img);
-    uri = undefined;
-    payload.cont_card = payload.message;
+    console.log(uri);
+    if(uri[0].includes("https")){
+      let img = document.createElement("img");
+      console.log("img link:" + uri);
+      img.src = uri;
+      //img.style.color = "red";
+      img.style.width = "21vw";
+      img.style.height = "29vw";
+      img.style.borderRadius = "5px";
+      img.style.border = "2px solid white";
+      img.style.color = "red";
+      img.alt = "CARD NOT FOUND";
+      ul.appendChild(img);
+    }
   }
   ul.scrollTop = ul.scrollHeight - ul.clientHeight; 
-  uri = undefined;
 });
 //MAIN CHANNEL JOIN
 channel.join();
@@ -56,7 +58,6 @@ msg.addEventListener('keypress', function (event) {
       cont_card: card
     });
     msg.value = '';
-    card = undefined;
   }
 });
 /////////////////////////////////////////////////////////

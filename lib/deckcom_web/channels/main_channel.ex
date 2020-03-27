@@ -29,26 +29,31 @@ defmodule DeckcomWeb.MainChannel do
   # broadcast to everyone in the current topic (main:lobby).
   def handle_in("shout", payload, socket) do
     ca = elem(Map.fetch(payload, "cont_card"), 1)
-    IO.puts inspect "CARD #{ca}"
-    if ca != nil do 
-      card = Deckcom.Cards.get_cards(name: ca)
-    else
-      card = nil
+    IO.puts inspect "Search for: #{ca}"
+    case ca do
+      nil ->
+        {:ok, IO.puts inspect "Search was nil"}
+      _ ->
+        case card = Deckcom.Cards.get_cards(name: ca) do
+          nil ->
+            Deckcom.Message.changeset(%Deckcom.Message{}, payload) |> Deckcom.Repo.insert 
+            broadcast socket, "shout", payload
+            {:ok, IO.puts inspect "Card was nil"}
+          [_] ->
+            for c <- card do
+              payload = Map.put(payload, "cont_card", c.image_uris)
+              IO.puts inspect "Found in search"
+              Deckcom.Message.changeset(%Deckcom.Message{}, payload) |> Deckcom.Repo.insert 
+              broadcast socket, "shout", payload
+            end
+          _ ->
+            Deckcom.Message.changeset(%Deckcom.Message{}, payload) |> Deckcom.Repo.insert 
+            broadcast socket, "shout", payload
+            {:ok, IO.puts inspect "Returned without a match"}
+        end
+        IO.puts inspect card
     end
-    if card != nil do
-      #IO.puts inspect "CARD #{card}"
-      for car <- card do
-        #IO.puts inspect "CARD #{car}"
-        payload = Map.put(payload, "cont_card", car.image_uris)
-        Deckcom.Message.changeset(%Deckcom.Message{}, payload) |> Deckcom.Repo.insert 
-        broadcast socket, "shout", payload
-        {:noreply, socket}
-      end
-    else
-      Deckcom.Message.changeset(%Deckcom.Message{}, payload) |> Deckcom.Repo.insert 
-      broadcast socket, "shout", payload
-      {:noreply, socket}
-    end
+    {:noreply, socket}
   end
 
   # Add authorization logic here as required.
