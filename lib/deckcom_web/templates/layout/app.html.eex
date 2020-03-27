@@ -20,22 +20,103 @@
         <div class="collapse navbar-collapse" id="navbarColor01">
         
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/">Lobby <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/decks">Decks</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Games</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Settings</a>
-            </li>
-            <%= if isAdmin === true do %>
-              <li class="nav-item">
-                <a class="nav-link" href="/admin">Admin</a>
+            <% req = @conn.request_path %>
+            <%= if String.contains?(req, "/decks") do %>
+              <li class="nav-item" id="home">
+                <a class="nav-link" href="/">Lobby</a>
               </li>
+              <li class="nav-item active" id="decks">
+                <a class="nav-link" onclick="" href="/decks">Decks<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Games</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Settings</a>
+              </li>
+              <%= if isAdmin === true do %>
+                <li class="nav-item">
+                  <a class="nav-link" href="/admin">Admin</a>
+                </li>
+              <% end %>
+            <% else %>
+              <%= if String.contains?(req, "/games") do %>
+                <li class="nav-item" id="home">
+                  <a class="nav-link" href="/">Lobby</a>
+                </li>
+                <li class="nav-item active" id="decks">
+                  <a class="nav-link" onclick="" href="/decks">Decks<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Games</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Settings</a>
+                </li>
+                <%= if isAdmin === true do %>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/admin">Admin</a>
+                  </li>
+                <% end %>
+              <% else %>
+                <%= if String.contains?(req, "/settings") do %>
+                  <li class="nav-item" id="home">
+                    <a class="nav-link" href="/">Lobby</a>
+                  </li>
+                  <li class="nav-item active" id="decks">
+                    <a class="nav-link" onclick="" href="/decks">Decks<span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Games</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Settings</a>
+                  </li>
+                  <%= if isAdmin === true do %>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/admin">Admin</a>
+                    </li>
+                  <% end %>
+                <% else %>
+                  <%= if String.contains?(req, "/admin") || String.contains?(req, "/genisets") do %>
+                    <li class="nav-item" id="home">
+                      <a class="nav-link" href="/">Lobby</a>
+                    </li>
+                    <li class="nav-item" id="decks">
+                      <a class="nav-link" onclick="" href="/decks">Decks</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Games</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Settings</a>
+                    </li>
+                    <%= if isAdmin === true do %>
+                      <li class="nav-item active">
+                        <a class="nav-link" href="/admin">Admin<span class="sr-only">(current)</span></a>
+                      </li>
+                    <% end %>
+                  <% else %>
+                    <li class="nav-item active" id="home">
+                      <a class="nav-link" href="/">Lobby<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item" id="decks">
+                      <a class="nav-link" onclick="" href="/decks">Decks</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Games</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Settings</a>
+                    </li>
+                    <%= if isAdmin === true do %>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/admin">Admin</a>
+                      </li>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
             <% end %>
           </ul>
           <div class="form-inline my-2 my-lg-0">

@@ -7,6 +7,43 @@
 <% end %>
 <div style="position: absolute; right: 0; top: 7vh; padding: none; background: #299fd6; width: 20vw; height: 95vh; border-left: 2px solid transparent; border-top: 2px solid transparent; overflow: hidden;">
     <div style="margin: auto; text-align: center; color: white; font-size: 135%;">
-        Decks
+        Board
     </div>
+    <%= if decks === [] do %>
+        <div style="padding-top: 0vh; margin: auto; text-align: center; color: lightgrey; padding-left: 1vh; width: 90%; border-bottom: 1px solid transparent; margin: auto;">
+            Create or Select a Deck to Manage it Here
+        </div>  
+    <% end %>
+    <div style="padding-top: 4vh; margin: auto; text-align: left; color: white; padding-left: 1vh; width: 90%; border-bottom: 1px solid white; margin: auto;">
+        In Play
+    </div>
+    <%= if decks === [] do %>
+        <div style="padding-top: 0vh; margin: auto; text-align: left; color: lightgrey; padding-left: 1vh; width: 90%; border-bottom: 1px solid transparent; margin: auto;">
+            Nothing to Show
+        </div>  
+    <% end %>
+    <div style="padding-top: 4vh; margin: auto; text-align: left; color: white; padding-left: 1vh; width: 90%; border-bottom: 1px solid white; margin: auto;">
+        Mainboard
+    </div>
+    <%= if decks === [] do %>
+        <div style="padding-top: 0vh; margin: auto; text-align: left; color: lightgrey; padding-left: 1vh; width: 90%; border-bottom: 1px solid transparent; margin: auto;">
+            Nothing to Show
+        </div>  
+    <% end %>
+    <div style="padding-top: 4vh; margin: auto; text-align: left; color: white; padding-left: 1vh; width: 90%; border-bottom: 1px solid white; margin: auto;">
+        Sideboard
+    </div>
+    <%= if decks === [] do %>
+        <div style="padding-top: 0vh; margin: auto; text-align: left; color: lightgrey; padding-left: 1vh; width: 90%; border-bottom: 1px solid transparent; margin: auto;">
+            Nothing to Show
+        </div>  
+    <% end %>
+    <div style="padding-top: 4vh; margin: auto; text-align: left; color: white; padding-left: 1vh; width: 90%; border-bottom: 1px solid white; margin: auto;">
+        Maybeboard
+    </div>
+    <%= if decks === [] do %>
+        <div style="padding-top: 0vh; margin: auto; text-align: left; color: lightgrey; padding-left: 1vh; width: 90%; border-bottom: 1px solid transparent; margin: auto;">
+            Nothing to Show
+        </div>  
+    <% end %>
 </div>

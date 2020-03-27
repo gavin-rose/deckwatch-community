@@ -623,7 +623,7 @@ defmodule Deckcom.Task.Cards do
       IO.puts inspect :link
       #page = num + 1
       page = 1
-      n = Task.async(HTTPoison.request(
+      n = HTTPoison.request(
         "GET",
         "#{link}",
         "",
@@ -929,7 +929,7 @@ defmodule Deckcom.Task.Cards do
             end
             #IO.puts inspect zn
           end
-      end).())
-      Task.await(n, :infinity) 
+      end).()
+      #Task.await(n, :infinity) 
     end
 end
