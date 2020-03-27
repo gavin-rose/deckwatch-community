@@ -6,7 +6,11 @@ config :deckcom, DeckcomWeb.Endpoint,
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/cache_manifest.json",
   secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE"),
-  check_origin: ["//blooming-retreat-92794.herokuapp.com", "//localhost:4000"]
+  check_origin: ["//blooming-retreat-92794.herokuapp.com", "//localhost:4000"],
+  protocol_options: [
+  idle_timeout: :infinity,
+  request_timeout: :infinity, 
+  inactivity_timeout: :infinity]
 
 config :deckcom, Deckcom.Repo,
   adapter: Ecto.Adapters.Postgres,

@@ -92,6 +92,7 @@ defmodule Deckcom.Cards.Mtg do
          :story_spotlight, :textless, :variation, :variation_of, :watermark, :previewed_at, :source_uri, :source, :multiverse_ids, :all_parts,
           :card_faces, :colors, :color_identity, :color_indicator, :legalities, :frame_effects, :games, :image_uris, :prices, :promo_types,
            :purchase_uris, :related_uris])
+    |> validate_required([:name])
     #Take what you can get approach, so if an error pops up while running database merges, we can easily avoid errors within our database
     #|> validate_required([:arena_id, :scryfall_id, :language_code, :mgto_id, :mgto_foil_id, :tcgplayer_id, :object, :oracle_id, :prints_search_uri,
     # :rulings_uri, :scryfall_uri, :scryfall2_uri, :cmc, :edhrec_rank, :foil, :hand_modifier, :layout, :life_modifier, :loyalty, :mana_cost, :name,

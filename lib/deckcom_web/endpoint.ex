@@ -3,7 +3,10 @@ defmodule DeckcomWeb.Endpoint do
 
   socket "/socket", DeckcomWeb.UserSocket,
     websocket: true,
-    longpoll: false
+    longpoll: false,
+    idle_timeout: :infinity,
+    request_timeout: :infinity, 
+    inactivity_timeout: :infinity
 
   # Serve at "/" the static files from "priv/static" directory.
   #

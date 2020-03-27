@@ -37,9 +37,15 @@ defmodule Deckcom.Cards do
   """
   def get_mtg!(id), do: Repo.get!(Mtg, id)
 
-  def get_cards(name), do: Repo.all(Mtg, name)
+  #def get_cards(name), do: Repo.all(Mtg, name)
+
+  def get_cards(name) do
+    Mtg |> limit(1) |> Repo.all(name)
+  end
 
   def get_card(scryfall_id), do: Repo.get_by(Mtg, scryfall_id)
+
+  def get_by_name(name), do: Repo.get_by(Mtg, name)
 
   @doc """
   Creates a mtg.
@@ -48,7 +54,6 @@ defmodule Deckcom.Cards do
 
       iex> create_mtg(%{field: value})
       {:ok, %Mtg{}}
-
       iex> create_mtg(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 

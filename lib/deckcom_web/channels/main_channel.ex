@@ -28,14 +28,27 @@ defmodule DeckcomWeb.MainChannel do
   # It is also common to receive messages from the client and
   # broadcast to everyone in the current topic (main:lobby).
   def handle_in("shout", payload, socket) do
-    IO.puts inspect payload
-    #FIX DB MERGE FIRST
-    #IO.puts inspect elem(Deckcom.Cards.get_cards(name: elem(Map.fetch(payload, "cont_card"), 1)), 0).
-    Deckcom.Message.changeset(%Deckcom.Message{}, payload) |> Deckcom.Repo.insert 
-    sendWpayload = Map.put(payload, "cont_card", "https://i.picsum.photos/id/0/5616/3744.jpg")
-    IO.puts inspect sendWpayload
-    broadcast socket, "shout", sendWpayload
-    {:noreply, socket}
+    ca = elem(Map.fetch(payload, "cont_card"), 1)
+    IO.puts inspect "CARD #{ca}"
+    if ca != nil do 
+      card = Deckcom.Cards.get_cards(name: ca)
+    else
+      card = nil
+    end
+    if card != nil do
+      #IO.puts inspect "CARD #{card}"
+      for car <- card do
+        #IO.puts inspect "CARD #{car}"
+        payload = Map.put(payload, "cont_card", car.image_uris)
+        Deckcom.Message.changeset(%Deckcom.Message{}, payload) |> Deckcom.Repo.insert 
+        broadcast socket, "shout", payload
+        {:noreply, socket}
+      end
+    else
+      Deckcom.Message.changeset(%Deckcom.Message{}, payload) |> Deckcom.Repo.insert 
+      broadcast socket, "shout", payload
+      {:noreply, socket}
+    end
   end
 
   # Add authorization logic here as required.

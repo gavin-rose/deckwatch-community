@@ -40,6 +40,15 @@ defmodule Deckcom.Task.Cards do
                 {:ok, _} ->
                   colors = elem(Map.fetch(data, :colors), 1)
               end
+              image_uris = []
+              case Map.fetch(data, :image_uris) do
+                :error ->
+                  image_uris = []
+                :ok ->
+                  image_uris = [elem(Map.fetch(elem(Map.fetch(data, :image_uris), 1), :normal), 1)]
+                {:ok, _} ->
+                  image_uris = [elem(Map.fetch(elem(Map.fetch(data, :image_uris), 1), :normal), 1)]
+              end
               sid = elem(Map.fetch(data, :id), 1)
               #exists = Deckcom.Cards.get_card(scryfall_id: sid)
               #IO.puts inspect exists
@@ -68,7 +77,7 @@ defmodule Deckcom.Task.Cards do
                     #life_modifier: elem(Map.fetch(data, :life_modifier), 1),
                     #loyalty: elem(Map.fetch(data, :loyalty), 1),
                     #mana_cost: elem(Map.fetch(data, :mana_cost), 1),
-                    name: elem(Map.fetch(data, :name), 1),
+                    name: name,
                     nonfoil: elem(Map.fetch(data, :nonfoil), 1),
                     #oracle_text: elem(Map.fetch(data, :oracle_text), 1),
                     oversized: elem(Map.fetch(data, :oversized), 1),
@@ -113,8 +122,8 @@ defmodule Deckcom.Task.Cards do
                     #color_indicator: elem(Map.fetch(data, :color_indicator), 1),
                     #REVISIT#legalities: "#{elem(Map.fetch(data, :legalities), 1)}",
                     #frame_effects: elem(Map.fetch(data, :frame_effects), 1),
-                    games: elem(Map.fetch(data, :games), 1)
-                    #REVISIT#image_uris: elem(Map.fetch(data, :image_uris), 1),
+                    games: elem(Map.fetch(data, :games), 1),
+                    image_uris: image_uris
                     #REVISIT#prices: elem(Map.fetch(data, :prices), 1),
                     #promo_types: elem(Map.fetch(data, :promo_types), 1),
                     #REVISIT#purchase_uris: elem(Map.fetch(data, :purchase_uris), 1),
@@ -143,7 +152,7 @@ defmodule Deckcom.Task.Cards do
                       #life_modifier: elem(Map.fetch(data, :life_modifier), 1),
                       #loyalty: elem(Map.fetch(data, :loyalty), 1),
                       #mana_cost: elem(Map.fetch(data, :mana_cost), 1),
-                      name: elem(Map.fetch(data, :name), 1),
+                      name: name,
                       nonfoil: elem(Map.fetch(data, :nonfoil), 1),
                       #oracle_text: elem(Map.fetch(data, :oracle_text), 1),
                       oversized: elem(Map.fetch(data, :oversized), 1),
@@ -188,8 +197,8 @@ defmodule Deckcom.Task.Cards do
                       #color_indicator: elem(Map.fetch(data, :color_indicator), 1),
                       #REVISIT#legalities: "#{elem(Map.fetch(data, :legalities), 1)}",
                       #frame_effects: elem(Map.fetch(data, :frame_effects), 1),
-                      games: elem(Map.fetch(data, :games), 1)
-                      #REVISIT#image_uris: elem(Map.fetch(data, :image_uris), 1),
+                      games: elem(Map.fetch(data, :games), 1),
+                      image_uris: image_uris
                       #REVISIT#prices: elem(Map.fetch(data, :prices), 1),
                       #promo_types: elem(Map.fetch(data, :promo_types), 1),
                       #REVISIT#purchase_uris: elem(Map.fetch(data, :purchase_uris), 1),
@@ -225,7 +234,7 @@ defmodule Deckcom.Task.Cards do
                       #life_modifier: elem(Map.fetch(data, :life_modifier), 1),
                       #loyalty: elem(Map.fetch(data, :loyalty), 1),
                       #mana_cost: elem(Map.fetch(data, :mana_cost), 1),
-                      name: elem(Map.fetch(data, :name), 1),
+                      name: name,
                       nonfoil: elem(Map.fetch(data, :nonfoil), 1),
                       #oracle_text: elem(Map.fetch(data, :oracle_text), 1),
                       oversized: elem(Map.fetch(data, :oversized), 1),
@@ -270,8 +279,8 @@ defmodule Deckcom.Task.Cards do
                       #color_indicator: elem(Map.fetch(data, :color_indicator), 1),
                       #REVISIT#legalities: "#{elem(Map.fetch(data, :legalities), 1)}",
                       #frame_effects: elem(Map.fetch(data, :frame_effects), 1),
-                      games: elem(Map.fetch(data, :games), 1)
-                      #REVISIT#image_uris: elem(Map.fetch(data, :image_uris), 1),
+                      games: elem(Map.fetch(data, :games), 1),
+                      image_uris: image_uris
                       #REVISIT#prices: elem(Map.fetch(data, :prices), 1),
                       #promo_types: elem(Map.fetch(data, :promo_types), 1),
                       #REVISIT#purchase_uris: elem(Map.fetch(data, :purchase_uris), 1),
@@ -286,7 +295,7 @@ defmodule Deckcom.Task.Cards do
               next = elem(Map.fetch(parsed, :next_page), 1)
               IO.puts inspect next
               if more === true do
-                :timer.sleep(1000)
+                :timer.sleep(500)
                 next_page_copy(next)
               end
             end
@@ -338,6 +347,15 @@ defmodule Deckcom.Task.Cards do
                 {:ok, _} ->
                   colors = elem(Map.fetch(data, :colors), 1)
               end
+              image_uris = []
+              case Map.fetch(data, :image_uris) do
+                :error ->
+                  image_uris = []
+                :ok ->
+                  image_uris = [elem(Map.fetch(elem(Map.fetch(data, :image_uris), 1), :normal), 1)]
+                {:ok, _} ->
+                  image_uris = [elem(Map.fetch(elem(Map.fetch(data, :image_uris), 1), :normal), 1)]
+              end
               sid = elem(Map.fetch(data, :id), 1)
               #exists = Deckcom.Cards.get_card(scryfall_id: sid)
               #IO.puts inspect exists
@@ -366,7 +384,7 @@ defmodule Deckcom.Task.Cards do
                     #life_modifier: elem(Map.fetch(data, :life_modifier), 1),
                     #loyalty: elem(Map.fetch(data, :loyalty), 1),
                     #mana_cost: elem(Map.fetch(data, :mana_cost), 1),
-                    name: elem(Map.fetch(data, :name), 1),
+                    name: name,
                     nonfoil: elem(Map.fetch(data, :nonfoil), 1),
                     #oracle_text: elem(Map.fetch(data, :oracle_text), 1),
                     oversized: elem(Map.fetch(data, :oversized), 1),
@@ -411,8 +429,8 @@ defmodule Deckcom.Task.Cards do
                     #color_indicator: elem(Map.fetch(data, :color_indicator), 1),
                     #REVISIT#legalities: "#{elem(Map.fetch(data, :legalities), 1)}",
                     #frame_effects: elem(Map.fetch(data, :frame_effects), 1),
-                    games: elem(Map.fetch(data, :games), 1)
-                    #REVISIT#image_uris: elem(Map.fetch(data, :image_uris), 1),
+                    games: elem(Map.fetch(data, :games), 1),
+                    image_uris: image_uris
                     #REVISIT#prices: elem(Map.fetch(data, :prices), 1),
                     #promo_types: elem(Map.fetch(data, :promo_types), 1),
                     #REVISIT#purchase_uris: elem(Map.fetch(data, :purchase_uris), 1),
@@ -441,7 +459,7 @@ defmodule Deckcom.Task.Cards do
                       #life_modifier: elem(Map.fetch(data, :life_modifier), 1),
                       #loyalty: elem(Map.fetch(data, :loyalty), 1),
                       #mana_cost: elem(Map.fetch(data, :mana_cost), 1),
-                      name: elem(Map.fetch(data, :name), 1),
+                      name: name,
                       nonfoil: elem(Map.fetch(data, :nonfoil), 1),
                       #oracle_text: elem(Map.fetch(data, :oracle_text), 1),
                       oversized: elem(Map.fetch(data, :oversized), 1),
@@ -486,8 +504,8 @@ defmodule Deckcom.Task.Cards do
                       #color_indicator: elem(Map.fetch(data, :color_indicator), 1),
                       #REVISIT#legalities: "#{elem(Map.fetch(data, :legalities), 1)}",
                       #frame_effects: elem(Map.fetch(data, :frame_effects), 1),
-                      games: elem(Map.fetch(data, :games), 1)
-                      #REVISIT#image_uris: elem(Map.fetch(data, :image_uris), 1),
+                      games: elem(Map.fetch(data, :games), 1),
+                      image_uris: image_uris
                       #REVISIT#prices: elem(Map.fetch(data, :prices), 1),
                       #promo_types: elem(Map.fetch(data, :promo_types), 1),
                       #REVISIT#purchase_uris: elem(Map.fetch(data, :purchase_uris), 1),
@@ -523,7 +541,7 @@ defmodule Deckcom.Task.Cards do
                       #life_modifier: elem(Map.fetch(data, :life_modifier), 1),
                       #loyalty: elem(Map.fetch(data, :loyalty), 1),
                       #mana_cost: elem(Map.fetch(data, :mana_cost), 1),
-                      name: elem(Map.fetch(data, :name), 1),
+                      name: name,
                       nonfoil: elem(Map.fetch(data, :nonfoil), 1),
                       #oracle_text: elem(Map.fetch(data, :oracle_text), 1),
                       oversized: elem(Map.fetch(data, :oversized), 1),
@@ -568,8 +586,8 @@ defmodule Deckcom.Task.Cards do
                       #color_indicator: elem(Map.fetch(data, :color_indicator), 1),
                       #REVISIT#legalities: "#{elem(Map.fetch(data, :legalities), 1)}",
                       #frame_effects: elem(Map.fetch(data, :frame_effects), 1),
-                      games: elem(Map.fetch(data, :games), 1)
-                      #REVISIT#image_uris: elem(Map.fetch(data, :image_uris), 1),
+                      games: elem(Map.fetch(data, :games), 1),
+                      image_uris: image_uris
                       #REVISIT#prices: elem(Map.fetch(data, :prices), 1),
                       #promo_types: elem(Map.fetch(data, :promo_types), 1),
                       #REVISIT#purchase_uris: elem(Map.fetch(data, :purchase_uris), 1),
@@ -584,7 +602,7 @@ defmodule Deckcom.Task.Cards do
               next = elem(Map.fetch(parsed, :next_page), 1)
               IO.puts inspect next
               if more === true do
-                :timer.sleep(1000)
+                :timer.sleep(500)
                 next_page_copy(next)
               end
             end

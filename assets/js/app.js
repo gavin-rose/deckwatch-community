@@ -13,7 +13,9 @@ channel.on('shout', function (payload) {
   let div = document.createElement("div");
   let name = payload.name;
   div.innerHTML = name + ': ' + payload.message;
+  console.log("img link:" + uri);
   img.src = uri;
+  //img.style.color = "red";
   img.style.width = "21vw";
   img.style.height = "29vw";
   img.style.borderRadius = "5px";
@@ -21,8 +23,11 @@ channel.on('shout', function (payload) {
   ul.appendChild(div);
   if(uri != undefined){
     ul.appendChild(img);
+    uri = undefined;
+    payload.cont_card = payload.message;
   }
   ul.scrollTop = ul.scrollHeight - ul.clientHeight; 
+  uri = undefined;
 });
 //MAIN CHANNEL JOIN
 channel.join();
@@ -51,6 +56,7 @@ msg.addEventListener('keypress', function (event) {
       cont_card: card
     });
     msg.value = '';
+    card = undefined;
   }
 });
 /////////////////////////////////////////////////////////
