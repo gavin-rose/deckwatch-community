@@ -52,6 +52,8 @@ defmodule Deckcom.Task.Cards do
                   image_uris = [elem(Map.fetch(elem(Map.fetch(data, :image_uris), 1), :normal), 1)]
               end
               sid = elem(Map.fetch(data, :id), 1)
+              lang = elem(Map.fetch(data, :lang), 1)
+              if lang === "en" do
               #exists = Deckcom.Cards.get_card(scryfall_id: sid)
               #IO.puts inspect exists
               case Deckcom.Cards.get_card(scryfall_id: sid) do
@@ -289,6 +291,7 @@ defmodule Deckcom.Task.Cards do
                       #REVISIT#related_uris: elem(Map.fetch(data, :related_uris), 1)
                       })
                     |> Deckcom.Repo.update()
+              end
               end
               #IO.puts inspect elem(Map.fetch(data, :image_uris), 1)
               
@@ -358,6 +361,8 @@ defmodule Deckcom.Task.Cards do
                   image_uris = [elem(Map.fetch(elem(Map.fetch(data, :image_uris), 1), :normal), 1)]
               end
               sid = elem(Map.fetch(data, :id), 1)
+              lang = elem(Map.fetch(data, :lang), 1)
+              if lang === "en" do
               #exists = Deckcom.Cards.get_card(scryfall_id: sid)
               #IO.puts inspect exists
               case Deckcom.Cards.get_card(scryfall_id: sid) do
@@ -595,6 +600,7 @@ defmodule Deckcom.Task.Cards do
                       #REVISIT#related_uris: elem(Map.fetch(data, :related_uris), 1)
                       })
                     |> Deckcom.Repo.update()
+              end
               end
               #IO.puts inspect elem(Map.fetch(data, :image_uris), 1)
               
@@ -668,6 +674,8 @@ defmodule Deckcom.Task.Cards do
                   image_uris = [elem(Map.fetch(elem(Map.fetch(data, :image_uris), 1), :normal), 1)]
               end
               sid = elem(Map.fetch(data, :id), 1)
+              lang = elem(Map.fetch(data, :lang), 1)
+              if lang === "en" do
               #exists = Deckcom.Cards.get_card(scryfall_id: sid)
               #IO.puts inspect exists
               case Deckcom.Cards.get_card(scryfall_id: sid) do
@@ -905,6 +913,7 @@ defmodule Deckcom.Task.Cards do
                       #REVISIT#related_uris: elem(Map.fetch(data, :related_uris), 1)
                       })
                     |> Deckcom.Repo.update()
+              end
               end
               end
               #IO.puts inspect elem(Map.fetch(data, :image_uris), 1)
