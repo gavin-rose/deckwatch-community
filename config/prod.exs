@@ -16,7 +16,7 @@ config :deckcom, Deckcom.Repo,
   adapter: Ecto.Adapters.Postgres,
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
   ssl: true,
-  url: System.get_env("DATABASE_URL")
+  url: System.get_env("HEROKU_POSTGRESQL_ROSE_URL")
 
 # Do not print debug messages in production
 config :logger, level: :info
