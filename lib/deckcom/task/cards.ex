@@ -293,6 +293,7 @@ defmodule Deckcom.Task.Cards do
                     |> Deckcom.Repo.update()
               end
               end
+              end
               #IO.puts inspect elem(Map.fetch(data, :image_uris), 1)
               
               more = elem(Map.fetch(parsed, :has_more), 1)
@@ -303,7 +304,6 @@ defmodule Deckcom.Task.Cards do
                 :timer.sleep(1500)
                 next_page_copy(next)
               end
-            end
             end
             #IO.puts inspect zn
           end
@@ -602,6 +602,7 @@ defmodule Deckcom.Task.Cards do
                     |> Deckcom.Repo.update()
               end
               end
+              end
               #IO.puts inspect elem(Map.fetch(data, :image_uris), 1)
               
               more = elem(Map.fetch(parsed, :has_more), 1)
@@ -612,7 +613,6 @@ defmodule Deckcom.Task.Cards do
                 :timer.sleep(1500)
                 next_page_copy(next)
               end
-            end
             end
             #IO.puts inspect zn
           end
