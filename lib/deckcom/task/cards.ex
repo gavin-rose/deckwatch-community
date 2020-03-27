@@ -301,7 +301,7 @@ defmodule Deckcom.Task.Cards do
               next = elem(Map.fetch(parsed, :next_page), 1)
               IO.puts inspect next
               if more === true do
-                :timer.sleep(1500)
+                :timer.sleep(500)
                 next_page_copy(next)
               end
             end
@@ -610,7 +610,7 @@ defmodule Deckcom.Task.Cards do
               next = elem(Map.fetch(parsed, :next_page), 1)
               IO.puts inspect next
               if more === true do
-                :timer.sleep(1500)
+                :timer.sleep(500)
                 next_page_copy(next)
               end
             end
@@ -923,7 +923,7 @@ defmodule Deckcom.Task.Cards do
               next = elem(Map.fetch(parsed, :next_page), 1)
               IO.puts inspect next
               if more === true do
-                :timer.sleep(1500)
+                :timer.sleep(500)
                 next_page_copy(next)
               end
             end
