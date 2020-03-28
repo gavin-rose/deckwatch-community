@@ -23,13 +23,13 @@ defmodule Deckcom.Task.Cards do
           |> Poison.decode(keys: :atoms)
           |> case do
             :timeout ->
-              start_card_db_copy(link)
+              start_card_db_copy()
             {:timeout} ->
-              start_card_db_copy(link)
+              start_card_db_copy()
             :error ->
-              start_card_db_copy(link)
+              start_card_db_copy()
             {:error, :timeout} ->
-              start_card_db_copy(link)
+              start_card_db_copy()
             {:ok, parsed} -> 
             zn = Map.keys(parsed)
             if zn === [:error] do
@@ -341,13 +341,13 @@ defmodule Deckcom.Task.Cards do
           |> Poison.decode(keys: :atoms)
           |> case do
             :timeout ->
-              next_page_copy(link)
+              next_page_copy(page)
             {:timeout} ->
-              next_page_copy(link)
+              next_page_copy(page)
             :error ->
-              next_page_copy(link)
+              next_page_copy(page)
             {:error, :timeout} ->
-              next_page_copy(link)
+              next_page_copy(page)
             {:ok, parsed} -> 
             zn = Map.keys(parsed)
             if zn === [:error] do
