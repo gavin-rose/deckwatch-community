@@ -14,7 +14,7 @@ defmodule Deckcom.Task.Geniset do
         IO.puts yellow <> "Task " <> blue <> "#{task}" <> yellow <> " Ran Successfully." <> white
         IO.puts yellow <> "Geniset Online, Initialization Complete." <> white
         #:timer.send_interval(1000 * 60 * 60 * 24 * 7, [cards, :infinity])
-        :timer.send_interval(1000 * 60 * 60 * 24, [mask, :infinity])
+        :timer.send_interval(1000 * 60 * 60 * 24, [mask])
     end
 
     def handle_info(task, params) do
@@ -43,7 +43,8 @@ defmodule Deckcom.Task.Geniset do
     end
 
     def cardsRetry(page) do
-        Task.await(Task.start(Deckcom.Task.Cards.continue_card_db_copy(page)), :infinity)
+        #Task.await(Task.start(Deckcom.Task.Cards.continue_card_db_copy(page)), :infinity)
+        Deckcom.Task.Cards.continue_card_db_copy(page)
         #Task.await(task, :infinity)
         {:ok, IO.puts yellow <> "Handled Task " <> blue <> "cards" <> yellow <> " at #{Time.utc_now}, Next Task Running Automatically in " <> green <> "#{1000 * 60 * 60 * 24 * 7} seconds " <> white <> "(One Week)."}
     end
@@ -53,7 +54,8 @@ defmodule Deckcom.Task.Geniset do
     end
 
     def cards do
-        Task.await(Task.start(Deckcom.Task.Cards.start_card_db_copy()), :infinity)
+        #Task.await(Task.start(Deckcom.Task.Cards.start_card_db_copy()), :infinity)
+        Deckcom.Task.Cards.start_card_db_copy()
         #Task.await(task, :infinity)
         {:ok, IO.puts yellow <> "Handled Task " <> blue <> "cards" <> yellow <> " at #{Time.utc_now}, Next Task Running Automatically in " <> green <> "#{1000 * 60 * 60 * 24 * 7} seconds " <> white <> "(One Week)."}
     end

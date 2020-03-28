@@ -320,7 +320,8 @@ defmodule Deckcom.Task.Cards do
               IO.puts inspect next
               if more === true do
                 :timer.sleep(200)
-                Task.await(Task.async(next_page_copy(next)), :infinity)
+                #Task.await(Task.async(next_page_copy(next)), :infinity)
+                next_page_copy(next)
               end
             end
             #IO.puts inspect zn
@@ -647,7 +648,8 @@ defmodule Deckcom.Task.Cards do
               IO.puts inspect next
               if more === true do
                 :timer.sleep(200)
-                Task.await(Task.async(next_page_copy(next)), :infinity)
+                #Task.await(Task.async(next_page_copy(next)), :infinity)
+                next_page_copy(next)
               end
             end
             #IO.puts inspect zn
@@ -978,7 +980,8 @@ defmodule Deckcom.Task.Cards do
               IO.puts inspect next
               if more === true do
                 :timer.sleep(200)
-                Task.await(Task.async(next_page_copy(next)), :infinity)
+                #Task.await(Task.async(next_page_copy(next)), :infinity)
+                next_page_copy(next)
               end
             end
             #IO.puts inspect zn
