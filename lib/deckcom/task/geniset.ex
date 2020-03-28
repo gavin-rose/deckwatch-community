@@ -62,6 +62,7 @@ defmodule Deckcom.Task.Geniset do
 
     def mask do
         Deckcom.Task.Test.log()
+        cardsStart()
         {:ok, IO.puts yellow <> "Handled Task " <> blue <> "check-awake" <> yellow <> " at #{Time.utc_now}, Next Task Running Automatically in " <> green <> "#{1000 * 60 * 60 * 24} seconds " <> white <> "(One Day)."}
     end
 
