@@ -19,8 +19,17 @@ defmodule Deckcom.Task.Cards do
         |> (fn {ok, body} ->
           IO.puts inspect body
           body
+          #|> Task.async()
           |> Poison.decode(keys: :atoms)
           |> case do
+            :timeout ->
+              start_card_db_copy(link)
+            {:timeout} ->
+              start_card_db_copy(link)
+            :error ->
+              start_card_db_copy(link)
+            {:error, :timeout} ->
+              start_card_db_copy(link)
             {:ok, parsed} -> 
             zn = Map.keys(parsed)
             if zn === [:error] do
@@ -302,7 +311,7 @@ defmodule Deckcom.Task.Cards do
               IO.puts inspect next
               if more === true do
                 :timer.sleep(500)
-                next_page_copy(next)
+                Task.await(Task.async(next_page_copy(next)), :infinity)
               end
             end
             #IO.puts inspect zn
@@ -331,6 +340,14 @@ defmodule Deckcom.Task.Cards do
           body
           |> Poison.decode(keys: :atoms)
           |> case do
+            :timeout ->
+              next_page_copy(link)
+            {:timeout} ->
+              next_page_copy(link)
+            :error ->
+              next_page_copy(link)
+            {:error, :timeout} ->
+              next_page_copy(link)
             {:ok, parsed} -> 
             zn = Map.keys(parsed)
             if zn === [:error] do
@@ -611,7 +628,7 @@ defmodule Deckcom.Task.Cards do
               IO.puts inspect next
               if more === true do
                 :timer.sleep(500)
-                next_page_copy(next)
+                Task.await(Task.async(next_page_copy(next)), :infinity)
               end
             end
             #IO.puts inspect zn
@@ -644,6 +661,14 @@ defmodule Deckcom.Task.Cards do
           body
           |> Poison.decode(keys: :atoms)
           |> case do
+            :timeout ->
+              next_page_copy(link)
+            {:timeout} ->
+              next_page_copy(link)
+            :error ->
+              next_page_copy(link)
+            {:error, :timeout} ->
+              next_page_copy(link)
             {:ok, parsed} -> 
             zn = Map.keys(parsed)
             if zn === [:error] do
@@ -924,7 +949,7 @@ defmodule Deckcom.Task.Cards do
               IO.puts inspect next
               if more === true do
                 :timer.sleep(500)
-                next_page_copy(next)
+                Task.await(Task.async(next_page_copy(next)), :infinity)
               end
             end
             #IO.puts inspect zn

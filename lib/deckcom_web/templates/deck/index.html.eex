@@ -47,3 +47,8 @@
         </div>  
     <% end %>
 </div>
+<div style="color: white; padding: 1vw; width: 80vw; text-align: center;">
+    <button class="btn btn-primary" onclick="window.location.replace('/decks/new');">
+        Create a Deck
+    </button>
+</div>
