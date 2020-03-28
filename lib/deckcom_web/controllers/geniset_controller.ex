@@ -52,14 +52,41 @@ defmodule DeckcomWeb.GenisetController do
       true ->
         case Genisets.create_geniset(geniset_params) do
           {:ok, geniset} ->
-            case Deckcom.Task.Geniset.cardsRetry(geniset.ran_by) do
-              :ok ->
-                conn
-                |> put_flash(:info, "Geniset created successfully.")
-                |> redirect(to: Routes.geniset_path(conn, :show, geniset))
-              {:error} ->
-                changeset = Genisets.change_geniset(%Geniset{})
-                render(conn, "new.html", changeset: changeset)
+            if geniset.geniset_method != nil do
+              case geniset.geniset_method do
+                "cards" ->
+                  case Deckcom.Task.Geniset.cards() do
+                    :ok ->
+                      conn
+                      |> put_flash(:info, "Geniset ran task cards successfully.")
+                      |> redirect(to: Routes.geniset_path(conn, :show, geniset))
+                    {:error} ->
+                      changeset = Genisets.change_geniset(%Geniset{})
+                      render(conn, "new.html", changeset: changeset)
+                  end
+                _ ->
+                  case Deckcom.Task.Geniset.cards() do
+                    :ok ->
+                      conn
+                      |> put_flash(:info, "Geniset ran task cards successfully.")
+                      |> redirect(to: Routes.geniset_path(conn, :show, geniset))
+                    {:error} ->
+                      changeset = Genisets.change_geniset(%Geniset{})
+                      render(conn, "new.html", changeset: changeset)
+                  end
+              end
+            else
+              if geniset.continue_page != nil do
+                case Deckcom.Task.Geniset.cardsRetry(geniset.ran_by) do
+                  :ok ->
+                    conn
+                    |> put_flash(:info, "Geniset created successfully.")
+                    |> redirect(to: Routes.geniset_path(conn, :show, geniset))
+                  {:error} ->
+                    changeset = Genisets.change_geniset(%Geniset{})
+                    render(conn, "new.html", changeset: changeset)
+                end
+              end
             end
           {:error, %Ecto.Changeset{} = changeset} ->
             render(conn, "new.html", changeset: changeset)

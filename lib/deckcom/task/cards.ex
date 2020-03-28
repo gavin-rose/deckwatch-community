@@ -8,7 +8,7 @@ defmodule Deckcom.Task.Cards do
         [
           
           ],
-        [       
+        [ timeout: :infinity, recv_timeout: :infinity 
           ]
             )
         |> case do
@@ -18,10 +18,19 @@ defmodule Deckcom.Task.Cards do
         end
         |> (fn {ok, body} ->
           IO.puts inspect body
-          body
-          #|> Task.async()
+          bod = body
           |> Poison.decode(keys: :atoms)
-          |> case do
+          #case bod do
+          #  :timeout ->
+          #    next_page_copy(link)
+          #  {:timeout} ->
+          #    next_page_copy(link)
+          #  :error ->
+          #    next_page_copy(link)
+          #  {:error, :timeout} ->
+          #    next_page_copy(link)
+          #end
+          case bod do
             :timeout ->
               start_card_db_copy()
             {:timeout} ->
@@ -310,7 +319,7 @@ defmodule Deckcom.Task.Cards do
               next = elem(Map.fetch(parsed, :next_page), 1)
               IO.puts inspect next
               if more === true do
-                :timer.sleep(500)
+                :timer.sleep(200)
                 Task.await(Task.async(next_page_copy(next)), :infinity)
               end
             end
@@ -327,7 +336,7 @@ defmodule Deckcom.Task.Cards do
         [
           
           ],
-        [       
+        [    timeout: :infinity, recv_timeout: :infinity   
           ]
             )
         |> case do
@@ -337,9 +346,19 @@ defmodule Deckcom.Task.Cards do
         end
         |> (fn {ok, body} ->
           IO.puts inspect body
-          body
+          bod = body
           |> Poison.decode(keys: :atoms)
-          |> case do
+          #case bod do
+          #  :timeout ->
+          #    next_page_copy(link)
+          #  {:timeout} ->
+          #    next_page_copy(link)
+          #  :error ->
+          #    next_page_copy(link)
+          #  {:error, :timeout} ->
+          #    next_page_copy(link)
+          #end
+          case bod do
             :timeout ->
               next_page_copy(page)
             {:timeout} ->
@@ -627,7 +646,7 @@ defmodule Deckcom.Task.Cards do
               next = elem(Map.fetch(parsed, :next_page), 1)
               IO.puts inspect next
               if more === true do
-                :timer.sleep(500)
+                :timer.sleep(200)
                 Task.await(Task.async(next_page_copy(next)), :infinity)
               end
             end
@@ -647,7 +666,7 @@ defmodule Deckcom.Task.Cards do
         [
           
           ],
-        [       
+        [      timeout: :infinity, recv_timeout: :infinity 
           ]
             )
         |> case do
@@ -658,9 +677,19 @@ defmodule Deckcom.Task.Cards do
         |> (fn {ok, body} ->
           IO.puts inspect body
           #dec = Task.async(Poison.decode(body, keys: :atoms))
-          body
+          bod = body
           |> Poison.decode(keys: :atoms)
-          |> case do
+          #case bod do
+          #  :timeout ->
+          #    next_page_copy(link)
+          #  {:timeout} ->
+          #    next_page_copy(link)
+          #  :error ->
+          #    next_page_copy(link)
+          #  {:error, :timeout} ->
+          #    next_page_copy(link)
+          #end
+          case bod do
             :timeout ->
               next_page_copy(link)
             {:timeout} ->
@@ -948,7 +977,7 @@ defmodule Deckcom.Task.Cards do
               next = elem(Map.fetch(parsed, :next_page), 1)
               IO.puts inspect next
               if more === true do
-                :timer.sleep(500)
+                :timer.sleep(200)
                 Task.await(Task.async(next_page_copy(next)), :infinity)
               end
             end

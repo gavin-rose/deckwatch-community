@@ -7,6 +7,7 @@ defmodule Deckcom.Genisets.Geniset do
     field :ran_by, :integer
     field :repeating, :boolean, default: false
     field :repeating_schedule, :string
+    field :continue_page, :integer
 
     timestamps()
   end
@@ -14,7 +15,7 @@ defmodule Deckcom.Genisets.Geniset do
   @doc false
   def changeset(geniset, attrs) do
     geniset
-    |> cast(attrs, [:ran_by, :repeating, :repeating_schedule, :geniset_method])
-    |> validate_required([:ran_by, :repeating, :repeating_schedule, :geniset_method])
+    |> cast(attrs, [:ran_by, :repeating, :repeating_schedule, :geniset_method, :continue_page])
+    #|> validate_required([:ran_by, :repeating, :repeating_schedule, :geniset_method])
   end
 end

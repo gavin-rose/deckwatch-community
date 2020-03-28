@@ -13,7 +13,8 @@ defmodule Deckcom.Task.Geniset do
         #:timer.send_after(1000, cards)
         IO.puts yellow <> "Task " <> blue <> "#{task}" <> yellow <> " Ran Successfully." <> white
         IO.puts yellow <> "Geniset Online, Initialization Complete." <> white
-        :timer.send_interval(1000 * 60 * 60 * 24 * 7, [cards, :infinity])
+        #:timer.send_interval(1000 * 60 * 60 * 24 * 7, [cards, :infinity])
+        :timer.send_interval(1000 * 60 * 60 * 24, [mask, :infinity])
     end
 
     def handle_info(task, params) do
@@ -47,6 +48,10 @@ defmodule Deckcom.Task.Geniset do
         {:ok, IO.puts yellow <> "Handled Task " <> blue <> "cards" <> yellow <> " at #{Time.utc_now}, Next Task Running Automatically in " <> green <> "#{1000 * 60 * 60 * 24 * 7} seconds " <> white <> "(One Week)."}
     end
 
+    def cardsStart do
+        :timer.send_interval(1000 * 60 * 60 * 24 * 7, [cards, :infinity])
+    end
+
     def cards do
         Task.await(Task.start(Deckcom.Task.Cards.start_card_db_copy()), :infinity)
         #Task.await(task, :infinity)
@@ -55,6 +60,7 @@ defmodule Deckcom.Task.Geniset do
 
     def mask do
         Deckcom.Task.Test.log()
+        {:ok, IO.puts yellow <> "Handled Task " <> blue <> "check-awake" <> yellow <> " at #{Time.utc_now}, Next Task Running Automatically in " <> green <> "#{1000 * 60 * 60 * 24} seconds " <> white <> "(One Day)."}
     end
 
     def error do
