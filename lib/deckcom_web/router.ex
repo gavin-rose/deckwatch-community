@@ -39,6 +39,7 @@ defmodule DeckcomWeb.Router do
     #Content
     resources "/users", UserController
     resources "/decks", DeckController
+    resources "/games", GameController
   end
 
 end
