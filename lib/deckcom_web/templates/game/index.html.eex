@@ -1,9 +1,18 @@
+<% fakeTable = ["EMPTY", "EMPTY", "SHADOW", "GTFREXO"] %>
+<style>
+  .hoverable:hover {
+    background: #666666;
+    border-radius: 5px;
+  }
+</style>
 <div style="width: 80vw;">
   <div style="padding-top: 0vh; margin: auto; text-align: center; color: lightgrey; padding: 1vh; width: 100%; border-bottom: 1px solid transparent; margin: auto; display: grid; grid-template-columns: 50% 50%; color: white;">
-    <div style="border: 1px solid white; border-radius: 5px; padding: 10px; background: #555555; height: 43vh; margin: 1vh;"><div style="width: 100%; border-bottom: 1px solid white;"><div style="text-align: left;">EMPTY</div></div></div>
-    <div style="border: 1px solid white; border-radius: 5px; padding: 10px; background: #666666; height: 43vh; margin: 1vh;"><div style="width: 100%; border-bottom: 1px solid white;"><div style="text-align: left;">EMPTY</div></div></div>
-    <div style="border: 1px solid white; border-radius: 5px; padding: 10px; background: #666666; height: 43vh; margin: 1vh;"><div style="width: 100%; border-bottom: 1px solid white;"><div style="text-align: left;">SHADOW</div></div></div>
-    <div style="border: 1px solid white; border-radius: 5px; padding: 10px; background: #555555; height: 43vh; margin: 1vh;"><div style="width: 100%; border-bottom: 1px solid white;"><div style="text-align: left;">GTFREXO</div></div></div>
+    <%= for fake <- fakeTable do %>
+      <div style="border: 1px solid white; border-radius: 5px; padding: 10px; background: #555555; height: 43vh; margin: 1vh;"><div style="width: 100%; border-bottom: 1px solid white;"><div style="display: grid; grid-template-columns: 50% 25% 25%;"><div style="text-align: left;"><%= fake %></div><div style="background: #888888; border-radius: 5px; margin-left: 1vh; margin-right: 1vh; margin-bottom: 1vh; width: 90%;"><span style="float: left; padding-left: 1vw;">LIFE</span><span class="hoverable" style="float: right; padding-right: 1vw; padding-left: 1vw;" id="life-<%= fake %>">40</span></div><div style="background: #888888; border-radius: 5px; margin-bottom: 1vh; width: 90%;"><span style="float: left; padding-left: 1vw;">OTHER</span><span style="float: right; padding-right: 1vw;" onclick="this.value++;" value: 0></span></div></div>
+        <span style="float: left;"></span>
+        </div>
+      </div>
+    <% end %>
   </div>  
 </div>
 <div style="position: absolute; right: 0; top: 7vh; padding: none; background: #299fd6; width: 20vw; height: 95vh; border-left: 2px solid transparent; border-top: 2px solid transparent; overflow: hidden;">
@@ -26,3 +35,42 @@
   <div style="border: 1px solid transparent; border-radius: 5px; margin: 1px; padding: 1px; text-align: center; color: white; width: 80%; margin: auto;" id="maxBudget" onclick="this.style.display = 'none';"><span style="float: left">Max Budget</span><span style="float: right">$1000</span></div><br>
   <div style="border: 1px solid white; border-radius: 5px; margin: 1px; padding: 1px; text-align: center; color: white; width: 80%; margin: auto;" id="playNow" onclick="this.style.display = 'none';">Start without 2 players</div>
 </div>
+<script>
+  document.getElementById('life-GTFREXO').innerHTML = 40;
+  var cont = false;
+  document.getElementById('life-GTFREXO').addEventListener('mouseover', function (over) {
+    cont = true;
+    console.log(cont);
+  });
+  document.getElementById('life-GTFREXO').addEventListener('mouseout', function (out) {
+    cont = false;
+    console.log(cont);
+  });
+  document.getElementById('life-GTFREXO').addEventListener('mousedown', function (mouse) {
+    console.log(mouse.shiftKey);
+    if(mouse.button == 0 && mouse.shiftKey == false && mouse.ctrlKey == false){
+      document.getElementById('life-GTFREXO').innerHTML = parseInt(document.getElementById('life-GTFREXO').innerHTML) + 1;
+    }
+    if(mouse.button == 0 && mouse.shiftKey == true && mouse.ctrlKey == false){
+      document.getElementById('life-GTFREXO').innerHTML = parseInt(document.getElementById('life-GTFREXO').innerHTML) + 10;
+    }
+    if(mouse.button == 0 && mouse.shiftKey == false && mouse.ctrlKey == true){
+      document.getElementById('life-GTFREXO').innerHTML = parseInt(document.getElementById('life-GTFREXO').innerHTML) - 1;
+    }
+    if(mouse.button == 0 && mouse.shiftKey == true && mouse.ctrlKey == true){
+      document.getElementById('life-GTFREXO').innerHTML = parseInt(document.getElementById('life-GTFREXO').innerHTML) - 10;
+    }
+  });
+  document.addEventListener('keypress', function (event) {
+    console.log(event.keyCode);
+    if (event.keyCode == 13 && cont == true) {
+      document.getElementById('life-GTFREXO').innerHTML = parseInt(document.getElementById('life-GTFREXO').innerHTML) + 1;
+    }
+  });
+  function cLife(){
+    document.getElementById('life-GTFREXO').innerHTML = parseInt(document.getElementById('life-GTFREXO').innerHTML) + 1;
+  }
+  function logKey(e) {
+  log.textContent += ` ${e.code}`;
+}
+</script>
