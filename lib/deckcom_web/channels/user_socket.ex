@@ -3,6 +3,7 @@ defmodule DeckcomWeb.UserSocket do
 
   ## Channels
   channel "main:lobby", DeckcomWeb.MainChannel
+  channel "search:lobby", DeckcomWeb.SearchChannel
 
   ## Connect and authentify connection via current_user
   #################################################

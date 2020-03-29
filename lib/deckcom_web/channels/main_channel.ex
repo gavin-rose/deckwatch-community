@@ -5,7 +5,8 @@ defmodule DeckcomWeb.MainChannel do
     Deckcom.Message.get_messages()
     |> Enum.each(fn msg -> push(socket, "shout", %{
         name: msg.name,
-        message: msg.message,
+        message: msg.message#,
+        #cont_card: msg.cont_card
       }) end)
     {:noreply, socket}
   end
@@ -41,9 +42,9 @@ defmodule DeckcomWeb.MainChannel do
             {:ok, IO.puts inspect "Card was nil"}
           [_] ->
             for c <- card do
-              payload = Map.put(payload, "cont_card", c.image_uris)
-              Deckcom.Message.changeset(%Deckcom.Message{}, payload) |> Deckcom.Repo.insert 
-              broadcast socket, "shout", payload
+              payloadNew = Map.put(payload, "cont_card", c.image_uris)
+              Deckcom.Message.changeset(%Deckcom.Message{}, payloadNew) |> Deckcom.Repo.insert 
+              broadcast socket, "shout", payloadNew
               {:ok, IO.puts inspect "Found in search"}
             end
           _ ->
