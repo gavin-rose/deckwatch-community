@@ -1,1 +1,28 @@
-Game Mechanic Playground
+<div style="width: 80vw;">
+  <div style="padding-top: 0vh; margin: auto; text-align: center; color: lightgrey; padding: 1vh; width: 100%; border-bottom: 1px solid transparent; margin: auto; display: grid; grid-template-columns: 50% 50%; color: white;">
+    <div style="border: 1px solid white; border-radius: 5px; padding: 10px; background: #555555; height: 43vh; margin: 1vh;"><div style="width: 100%; border-bottom: 1px solid white;"><div style="text-align: left;">EMPTY</div></div></div>
+    <div style="border: 1px solid white; border-radius: 5px; padding: 10px; background: #666666; height: 43vh; margin: 1vh;"><div style="width: 100%; border-bottom: 1px solid white;"><div style="text-align: left;">EMPTY</div></div></div>
+    <div style="border: 1px solid white; border-radius: 5px; padding: 10px; background: #666666; height: 43vh; margin: 1vh;"><div style="width: 100%; border-bottom: 1px solid white;"><div style="text-align: left;">SHADOW</div></div></div>
+    <div style="border: 1px solid white; border-radius: 5px; padding: 10px; background: #555555; height: 43vh; margin: 1vh;"><div style="width: 100%; border-bottom: 1px solid white;"><div style="text-align: left;">GTFREXO</div></div></div>
+  </div>  
+</div>
+<div style="position: absolute; right: 0; top: 7vh; padding: none; background: #299fd6; width: 20vw; height: 95vh; border-left: 2px solid transparent; border-top: 2px solid transparent; overflow: hidden;">
+  <div style="margin: auto; text-align: center; color: white; font-size: 135%;">
+      EDH FUN TIMES
+  </div>
+  <div style="padding-top: 0vh; margin: auto; text-align: center; color: lightgrey; padding-left: 1vh; width: 90%; border-bottom: 1px solid transparent; margin: auto;">
+    Waiting on players...
+  </div>  
+  <div style="margin: auto; text-align: center; color: white; font-size: 135%;">
+      In Lobby
+  </div>
+  <div style="padding-top: 0vh; margin: auto; text-align: center; color: lightgrey; padding: 1vh; width: 100%; border-bottom: 1px solid transparent; margin: auto; display: grid; grid-template-columns: 50% 50%; color: white;">
+    <div style="border: 1px solid transparent; border-radius: 5px; padding: 2px;">EMPTY</div>
+    <div style="border: 1px solid transparent; border-radius: 5px; padding: 2px;">EMPTY</div>
+    <div style="border: 1px solid transparent; border-radius: 5px; padding: 2px;">SHADOWS</div>
+    <div style="border: 1px solid transparent; border-radius: 5px; padding: 2px;">GTFREXO</div>
+  </div>  
+  <div style="border: 1px solid transparent; border-radius: 5px; margin: 1px; padding: 1px; text-align: center; color: white; width: 80%; margin: auto;" id="powerLevel" onclick="this.style.display = 'none';"><span style="float: left">Power Level</span><span style="float: right">10</span></div><br>
+  <div style="border: 1px solid transparent; border-radius: 5px; margin: 1px; padding: 1px; text-align: center; color: white; width: 80%; margin: auto;" id="maxBudget" onclick="this.style.display = 'none';"><span style="float: left">Max Budget</span><span style="float: right">$1000</span></div><br>
+  <div style="border: 1px solid white; border-radius: 5px; margin: 1px; padding: 1px; text-align: center; color: white; width: 80%; margin: auto;" id="playNow" onclick="this.style.display = 'none';">Start without 2 players</div>
+</div>
