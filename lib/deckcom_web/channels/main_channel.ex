@@ -42,9 +42,9 @@ defmodule DeckcomWeb.MainChannel do
           [_] ->
             for c <- card do
               payload = Map.put(payload, "cont_card", c.image_uris)
-              IO.puts inspect "Found in search"
               Deckcom.Message.changeset(%Deckcom.Message{}, payload) |> Deckcom.Repo.insert 
               broadcast socket, "shout", payload
+              {:ok, IO.puts inspect "Found in search"}
             end
           _ ->
             Deckcom.Message.changeset(%Deckcom.Message{}, payload) |> Deckcom.Repo.insert 
