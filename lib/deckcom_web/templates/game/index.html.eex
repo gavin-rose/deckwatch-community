@@ -4,12 +4,23 @@
     background: #666666;
     border-radius: 5px;
   }
+  div, body, span {
+    user-select: none;
+  }
 </style>
-<div style="width: 80vw;">
+<div style="width: 80vw;" oncontextmenu="return false">
   <div style="padding-top: 0vh; margin: auto; text-align: center; color: lightgrey; padding: 1vh; width: 100%; border-bottom: 1px solid transparent; margin: auto; display: grid; grid-template-columns: 50% 50%; color: white;">
     <%= for fake <- fakeTable do %>
-      <div style="border: 1px solid white; border-radius: 5px; padding: 10px; background: #555555; height: 43vh; margin: 1vh;"><div style="width: 100%; border-bottom: 1px solid white;"><div style="display: grid; grid-template-columns: 50% 25% 25%;"><div style="text-align: left;"><%= fake %></div><div style="background: #888888; border-radius: 5px; margin-left: 1vh; margin-right: 1vh; margin-bottom: 1vh; width: 90%;"><span style="float: left; padding-left: 1vw;">LIFE</span><span class="hoverable" style="float: right; padding-right: 1vw; padding-left: 1vw;" id="life-<%= fake %>">40</span></div><div style="background: #888888; border-radius: 5px; margin-bottom: 1vh; width: 90%;"><span style="float: left; padding-left: 1vw;">OTHER</span><span style="float: right; padding-right: 1vw;" onclick="this.value++;" value: 0></span></div></div>
+      <div id="table-<%= fake %>" style="border: 1px solid white; border-radius: 5px; padding: 10px; background: #555555; height: 43vh; margin: 1vh;"><div id="line-<%= fake %>" style="width: 100%; border-bottom: 1px solid white;"><div style="display: grid; grid-template-columns: 70% 15% 15%;"><div style="text-align: left;"><%= fake %></div><div style="background: #888888; border-radius: 5px; margin-bottom: 1vh; width: 90%;"><div class="hoverable" style="width: 100%;" id="life-<%= fake %>"><div oncontextmenu="return false" style="width: 100%;">40</div></div></div><div style="background: #888888; border-radius: 5px; margin-bottom: 1vh; width: 90%;"><div style="width: 100%;" id="other-<%= fake %>" class="hoverable" style="width: 100%;">0</div></div></div>
         <span style="float: left;"></span>
+        </div>
+        <div style="display: grid; grid-template-rows: 25% 25% 25% 25% 25% 25%; margin: auto; padding-top: 1vw; grid-template-columns: 2vw 2vw;">
+          <img onclick="toggleColor('white');" id="whiteV" style="width: 2vw; opacity: 0.1;" src='https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/8/8e/W.svg?version=41d3dee7e4012b580321ca0cb9308e17'><div style="margin: auto; width: 2vw; height: 2vw; align-content: center; text-align: center; margin-left: -2vw;">0</div>
+          <img onclick="toggleColor('blue');" id="blueV" style="width: 2vw; opacity: 0.1;" src='https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/9/9f/U.svg?version=bde0bfe27798651340d9588121a78bdb'><div style="margin: auto; width: 2vw; height: 2vw; align-content: center; text-align: center; margin-left: -2vw;">0</div>
+          <img onclick="toggleColor('black');" id="blackV" style="width: 2vw; opacity: 0.1;" src='https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/2/2f/B.svg?version=7a492827f1cd9a81d7e2e46a7ef09818'><div style="margin: auto; width: 2vw; height: 2vw; align-content: center; text-align: center; margin-left: -2vw;">0</div>
+          <img onclick="toggleColor('red');" id="redV" style="width: 2vw; opacity: 0.1;" src='https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/8/87/R.svg?version=3bc9e4e594c766c0f617dcd247ca8569'><div style="margin: auto; width: 2vw; height: 2vw; align-content: center; text-align: center; margin-left: -2vw;">0</div>
+          <img onclick="toggleColor('green');" id="greenV" style="width: 2vw; opacity: 0.1;" src='https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/8/88/G.svg?version=cf85f35170391f8fbeb037dc18cc3c50'><div style="margin: auto; width: 2vw; height: 2vw; align-content: center; text-align: center; margin-left: -2vw;">0</div>
+          <img onclick="toggleColor('green');" id="greenV" style="width: 2vw; opacity: 0.1;" src='https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/1/1a/C.svg?version=a577ac57e80baa739c2a603300dc50ff'><div style="margin: auto; width: 2vw; height: 2vw; align-content: center; text-align: center; margin-left: -2vw;">0</div>
         </div>
       </div>
     <% end %>
@@ -36,16 +47,10 @@
   <div style="border: 1px solid white; border-radius: 5px; margin: 1px; padding: 1px; text-align: center; color: white; width: 80%; margin: auto;" id="playNow" onclick="this.style.display = 'none';">Start without 2 players</div>
 </div>
 <script>
+  document.getElementById('line-GTFREXO').style.borderBottom = "2px solid #299fd6";
+  document.getElementById('table-GTFREXO').style.border = "2px solid #299fd6";
   document.getElementById('life-GTFREXO').innerHTML = 40;
-  var cont = false;
-  document.getElementById('life-GTFREXO').addEventListener('mouseover', function (over) {
-    cont = true;
-    console.log(cont);
-  });
-  document.getElementById('life-GTFREXO').addEventListener('mouseout', function (out) {
-    cont = false;
-    console.log(cont);
-  });
+  document.getElementById('other-GTFREXO').innerHTML = 0;
   document.getElementById('life-GTFREXO').addEventListener('mousedown', function (mouse) {
     console.log(mouse.shiftKey);
     if(mouse.button == 0 && mouse.shiftKey == false && mouse.ctrlKey == false){
@@ -61,16 +66,19 @@
       document.getElementById('life-GTFREXO').innerHTML = parseInt(document.getElementById('life-GTFREXO').innerHTML) - 10;
     }
   });
-  document.addEventListener('keypress', function (event) {
-    console.log(event.keyCode);
-    if (event.keyCode == 13 && cont == true) {
-      document.getElementById('life-GTFREXO').innerHTML = parseInt(document.getElementById('life-GTFREXO').innerHTML) + 1;
+  document.getElementById('other-GTFREXO').addEventListener('mousedown', function (mouse) {
+    console.log(mouse.shiftKey);
+    if(mouse.button == 0 && mouse.shiftKey == false && mouse.ctrlKey == false){
+      document.getElementById('other-GTFREXO').innerHTML = parseInt(document.getElementById('other-GTFREXO').innerHTML) + 1;
+    }
+    if(mouse.button == 0 && mouse.shiftKey == true && mouse.ctrlKey == false){
+      document.getElementById('other-GTFREXO').innerHTML = parseInt(document.getElementById('other-GTFREXO').innerHTML) + 10;
+    }
+    if(mouse.button == 0 && mouse.shiftKey == false && mouse.ctrlKey == true){
+      document.getElementById('other-GTFREXO').innerHTML = parseInt(document.getElementById('other-GTFREXO').innerHTML) - 1;
+    }
+    if(mouse.button == 0 && mouse.shiftKey == true && mouse.ctrlKey == true){
+      document.getElementById('other-GTFREXO').innerHTML = parseInt(document.getElementById('other-GTFREXO').innerHTML) - 10;
     }
   });
-  function cLife(){
-    document.getElementById('life-GTFREXO').innerHTML = parseInt(document.getElementById('life-GTFREXO').innerHTML) + 1;
-  }
-  function logKey(e) {
-  log.textContent += ` ${e.code}`;
-}
 </script>
