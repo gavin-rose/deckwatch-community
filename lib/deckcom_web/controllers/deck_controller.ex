@@ -32,6 +32,24 @@ defmodule DeckcomWeb.DeckController do
   def create(conn, %{"deck" => deck_params}) do
     case Decks.create_deck(deck_params) do
       {:ok, deck} ->
+        cards = String.split(elem(Map.fetch(deck_params, "in_play_text"), 1), "\n", parts: :infinity)
+        cardsList = []
+        for card <- cards do
+          dets = String.split(card, " ", parts: 2)
+          name = Enum.at(dets, 1)
+          IO.puts name
+          IO.puts inspect cid = Enum.at(Deckcom.Cards.get_cards(name: name), 0)
+          IO.puts inspect elem(Map.fetch(cid, :id), 1)
+          quantity = String.replace(Enum.at(dets, 0), "x", "") |> String.to_integer
+          IO.puts inspect "QUANTITY: #{quantity}"
+          if cid != nil do
+            if deck.play === nil do
+              Decks.update_deck(deck, %{play: [elem(Map.fetch(cid, :id), 1)]})
+            else
+              Decks.update_deck(deck, %{play: deck.play ++ [elem(Map.fetch(cid, :id), 1)]})
+            end
+          end
+        end
         conn
         |> put_flash(:info, "Deck created successfully.")
         |> redirect(to: Routes.deck_path(conn, :show, deck))

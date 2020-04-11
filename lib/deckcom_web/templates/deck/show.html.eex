@@ -1,0 +1,4 @@
+<%= for ip <- @deck.play do %>
+    <% card = Deckcom.Cards.get_card(id: ip) %>
+    <img src="<%= Enum.at(card.image_uris, 0) %>">
+<% end %>
