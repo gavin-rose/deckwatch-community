@@ -4,12 +4,24 @@
     <div style="color: white; padding: 1vw; width: 80vw; text-align: center;">
         You don't have any decks, add one now!
     </div>
+<% else %>
+    <%= for deck <- decks do %>
+        <% name = deck.name %>
+        <% if name === nil, do: name = "Untitled" %>
+        <div onclick="location.replace('decks/<%= deck.id %>');">
+            <div style="width: 10.5vw; text-align: center; margin: 2vh; color: white;"><%= name %></div>
+            <div style="width: 10.5vw; margin: 2vh; height: 14.5vw; border-radius: 5px; border: 1px solid grey;">
+                <% card = Deckcom.Cards.get_card(id: Enum.at(deck.play, 0)) %>
+                <img src="<%= Enum.at(card.image_uris, 0) %>" style="width: 10.5vw; height: 14.5vw;">
+            </div>
+        </div>
+    <% end %>
 <% end %>
 <div style="position: absolute; right: 0; top: 7vh; padding: none; background: #299fd6; width: 20vw; height: 95vh; border-left: 2px solid transparent; border-top: 2px solid transparent; overflow: hidden;">
     <div style="margin: auto; text-align: center; color: white; font-size: 135%;">
         Board
     </div>
-    <%= if decks === [] do %>
+    <%= if decks === decks do %>
         <div style="padding-top: 0vh; margin: auto; text-align: center; color: lightgrey; padding-left: 1vh; width: 90%; border-bottom: 1px solid transparent; margin: auto;">
             Create or Select a Deck to Manage it Here
         </div>  
@@ -17,7 +29,7 @@
     <div style="padding-top: 4vh; margin: auto; text-align: left; color: white; padding-left: 1vh; width: 90%; border-bottom: 1px solid white; margin: auto;">
         In Play
     </div>
-    <%= if decks === [] do %>
+    <%= if decks === decks do %>
         <div style="padding-top: 0vh; margin: auto; text-align: left; color: lightgrey; padding-left: 1vh; width: 90%; border-bottom: 1px solid transparent; margin: auto;">
             Nothing to Show
         </div>  
@@ -25,7 +37,7 @@
     <div style="padding-top: 4vh; margin: auto; text-align: left; color: white; padding-left: 1vh; width: 90%; border-bottom: 1px solid white; margin: auto;">
         Mainboard
     </div>
-    <%= if decks === [] do %>
+    <%= if decks === decks do %>
         <div style="padding-top: 0vh; margin: auto; text-align: left; color: lightgrey; padding-left: 1vh; width: 90%; border-bottom: 1px solid transparent; margin: auto;">
             Nothing to Show
         </div>  
@@ -33,7 +45,7 @@
     <div style="padding-top: 4vh; margin: auto; text-align: left; color: white; padding-left: 1vh; width: 90%; border-bottom: 1px solid white; margin: auto;">
         Sideboard
     </div>
-    <%= if decks === [] do %>
+    <%= if decks === decks do %>
         <div style="padding-top: 0vh; margin: auto; text-align: left; color: lightgrey; padding-left: 1vh; width: 90%; border-bottom: 1px solid transparent; margin: auto;">
             Nothing to Show
         </div>  
@@ -41,7 +53,7 @@
     <div style="padding-top: 4vh; margin: auto; text-align: left; color: white; padding-left: 1vh; width: 90%; border-bottom: 1px solid white; margin: auto;">
         Maybeboard
     </div>
-    <%= if decks === [] do %>
+    <%= if decks === decks do %>
         <div style="padding-top: 0vh; margin: auto; text-align: left; color: lightgrey; padding-left: 1vh; width: 90%; border-bottom: 1px solid transparent; margin: auto;">
             Nothing to Show
         </div>  

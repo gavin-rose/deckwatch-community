@@ -30,12 +30,14 @@ defmodule DeckcomWeb.DeckController do
   end
 
   def create(conn, %{"deck" => deck_params}) do
-    case Decks.create_deck(deck_params) do
+    user = get_session(conn, :current_user)
+    uid = Deckcom.Users.get_user_by_email(email: user.email).id
+    case Decks.create_deck(Map.put(deck_params, "owner", uid)) do
       {:ok, deck} ->
         String.split(elem(Map.fetch(deck_params, "in_play_text"), 1), "\r", parts: :infinity) |> run_play(0, deck.id)
         conn
         |> put_flash(:info, "Deck created successfully.")
-        |> redirect(to: Routes.deck_path(conn, :show, deck))
+        |> redirect(to: Routes.deck_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
